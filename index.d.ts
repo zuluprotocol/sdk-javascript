@@ -7,6 +7,7 @@ export * as vega_api_trading_grpc from "./generated/vega/api/trading_grpc_pb";
 export * as vega_api_trading from "./generated/vega/api/trading_pb";
 export * as vega_assets from "./generated/vega/assets_pb";
 export * as vega_chain_events from "./generated/vega/chain_events_pb";
+export * as vega_checkpoint_v1_checkpoint from "./generated/vega/checkpoint/v1/checkpoint_pb";
 export * as vega_commands_v1_commands from "./generated/vega/commands/v1/commands_pb";
 export * as vega_commands_v1_oracles from "./generated/vega/commands/v1/oracles_pb";
 export * as vega_commands_v1_transaction from "./generated/vega/commands/v1/transaction_pb";

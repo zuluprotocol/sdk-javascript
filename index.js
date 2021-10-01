@@ -10,6 +10,8 @@ var vega_assets_grpc = require('./generated/vega/assets_grpc_pb.js')
 var vega_assets = require('./generated/vega/assets_pb.js')
 var vega_chain_events_grpc = require('./generated/vega/chain_events_grpc_pb.js')
 var vega_chain_events = require('./generated/vega/chain_events_pb.js')
+var vega_checkpoint_v1_checkpoint_grpc = require('./generated/vega/checkpoint/v1/checkpoint_grpc_pb.js')
+var vega_checkpoint_v1_checkpoint = require('./generated/vega/checkpoint/v1/checkpoint_pb.js')
 var vega_commands_v1_commands_grpc = require('./generated/vega/commands/v1/commands_grpc_pb.js')
 var vega_commands_v1_commands = require('./generated/vega/commands/v1/commands_pb.js')
 var vega_commands_v1_oracles_grpc = require('./generated/vega/commands/v1/oracles_grpc_pb.js')
@@ -65,6 +67,12 @@ module.exports = {
     assets_grpc: vega_assets_grpc,
     chain_events: vega_chain_events,
     chain_events_grpc: vega_chain_events_grpc,
+    checkpoint: {
+      v1: {
+        checkpoint: vega_checkpoint_v1_checkpoint,
+        checkpoint_grpc: vega_checkpoint_v1_checkpoint_grpc
+      }
+    },
     commands: {
       v1: {
         commands: vega_commands_v1_commands,
