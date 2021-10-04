@@ -1,5 +1,5 @@
-// package: vega.coreapi.v1
-// file: vega/coreapi/v1/coreapi.proto
+// package: vega.api.v1
+// file: vega/api/v1/corestate.proto
 
 /* tslint:disable */
 /* eslint-disable */
