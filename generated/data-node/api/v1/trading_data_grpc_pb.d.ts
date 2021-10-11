@@ -22,6 +22,7 @@ interface ITradingDataServiceService extends grpc.ServiceDefinition<grpc.Untyped
     marketAccounts: ITradingDataServiceService_IMarketAccounts;
     partyAccounts: ITradingDataServiceService_IPartyAccounts;
     feeInfrastructureAccounts: ITradingDataServiceService_IFeeInfrastructureAccounts;
+    globalRewardPoolAccounts: ITradingDataServiceService_IGlobalRewardPoolAccounts;
     candles: ITradingDataServiceService_ICandles;
     marketDataByID: ITradingDataServiceService_IMarketDataByID;
     marketsData: ITradingDataServiceService_IMarketsData;
@@ -118,6 +119,15 @@ interface ITradingDataServiceService_IFeeInfrastructureAccounts extends grpc.Met
     requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest>;
     responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse>;
     responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse>;
+}
+interface ITradingDataServiceService_IGlobalRewardPoolAccounts extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse> {
+    path: "/datanode.api.v1.TradingDataService/GlobalRewardPoolAccounts";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest>;
+    requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest>;
+    responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse>;
+    responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse>;
 }
 interface ITradingDataServiceService_ICandles extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.CandlesRequest, data_node_api_v1_trading_data_pb.CandlesResponse> {
     path: "/datanode.api.v1.TradingDataService/Candles";
@@ -738,6 +748,7 @@ export interface ITradingDataServiceServer extends grpc.UntypedServiceImplementa
     marketAccounts: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.MarketAccountsRequest, data_node_api_v1_trading_data_pb.MarketAccountsResponse>;
     partyAccounts: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.PartyAccountsRequest, data_node_api_v1_trading_data_pb.PartyAccountsResponse>;
     feeInfrastructureAccounts: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse>;
+    globalRewardPoolAccounts: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse>;
     candles: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.CandlesRequest, data_node_api_v1_trading_data_pb.CandlesResponse>;
     marketDataByID: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.MarketDataByIDRequest, data_node_api_v1_trading_data_pb.MarketDataByIDResponse>;
     marketsData: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.MarketsDataRequest, data_node_api_v1_trading_data_pb.MarketsDataResponse>;
@@ -818,6 +829,9 @@ export interface ITradingDataServiceClient {
     feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
     feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
     feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
+    globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
+    globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
+    globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
     candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;
     candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;
     candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;
@@ -1021,6 +1035,9 @@ export class TradingDataServiceClient extends grpc.Client implements ITradingDat
     public feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
     public feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
     public feeInfrastructureAccounts(request: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.FeeInfrastructureAccountsResponse) => void): grpc.ClientUnaryCall;
+    public globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
+    public globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
+    public globalRewardPoolAccounts(request: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse) => void): grpc.ClientUnaryCall;
     public candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;
     public candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;
     public candles(request: data_node_api_v1_trading_data_pb.CandlesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.CandlesResponse) => void): grpc.ClientUnaryCall;

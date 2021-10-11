@@ -140,7 +140,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.vega.Party = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.Party.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.vega.Party, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1377,13 +1377,6 @@ proto.vega.Timestamp.prototype.setValue = function(value) {
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.vega.Party.repeatedFields_ = [2];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1415,9 +1408,7 @@ proto.vega.Party.prototype.toObject = function(opt_includeInstance) {
  */
 proto.vega.Party.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    delegationsList: jspb.Message.toObjectList(msg.getDelegationsList(),
-    proto.vega.Delegation.toObject, includeInstance)
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1458,11 +1449,6 @@ proto.vega.Party.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
-      var value = new proto.vega.Delegation;
-      reader.readMessage(value,proto.vega.Delegation.deserializeBinaryFromReader);
-      msg.addDelegations(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1499,14 +1485,6 @@ proto.vega.Party.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getDelegationsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      2,
-      f,
-      proto.vega.Delegation.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -1525,44 +1503,6 @@ proto.vega.Party.prototype.getId = function() {
  */
 proto.vega.Party.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * repeated Delegation delegations = 2;
- * @return {!Array<!proto.vega.Delegation>}
- */
-proto.vega.Party.prototype.getDelegationsList = function() {
-  return /** @type{!Array<!proto.vega.Delegation>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.vega.Delegation, 2));
-};
-
-
-/**
- * @param {!Array<!proto.vega.Delegation>} value
- * @return {!proto.vega.Party} returns this
-*/
-proto.vega.Party.prototype.setDelegationsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
-};
-
-
-/**
- * @param {!proto.vega.Delegation=} opt_value
- * @param {number=} opt_index
- * @return {!proto.vega.Delegation}
- */
-proto.vega.Party.prototype.addDelegations = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.vega.Delegation, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.vega.Party} returns this
- */
-proto.vega.Party.prototype.clearDelegationsList = function() {
-  return this.setDelegationsList([]);
 };
 
 
@@ -13096,7 +13036,9 @@ proto.vega.Node.toObject = function(includeInstance, msg) {
     delegationsList: jspb.Message.toObjectList(msg.getDelegationsList(),
     proto.vega.Delegation.toObject, includeInstance),
     score: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    normalisedScore: jspb.Message.getFieldWithDefault(msg, 16, "")
+    normalisedScore: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    avatarUrl: jspb.Message.getFieldWithDefault(msg, 18, "")
   };
 
   if (includeInstance) {
@@ -13198,6 +13140,14 @@ proto.vega.Node.deserializeBinaryFromReader = function(msg, reader) {
     case 16:
       var value = /** @type {string} */ (reader.readString());
       msg.setNormalisedScore(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAvatarUrl(value);
       break;
     default:
       reader.skipField();
@@ -13339,6 +13289,20 @@ proto.vega.Node.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       16,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = message.getAvatarUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      18,
       f
     );
   }
@@ -13669,6 +13633,42 @@ proto.vega.Node.prototype.getNormalisedScore = function() {
  */
 proto.vega.Node.prototype.setNormalisedScore = function(value) {
   return jspb.Message.setProto3StringField(this, 16, value);
+};
+
+
+/**
+ * optional string name = 17;
+ * @return {string}
+ */
+proto.vega.Node.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.Node} returns this
+ */
+proto.vega.Node.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional string avatar_url = 18;
+ * @return {string}
+ */
+proto.vega.Node.prototype.getAvatarUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.Node} returns this
+ */
+proto.vega.Node.prototype.setAvatarUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 18, value);
 };
 
 

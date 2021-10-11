@@ -2457,6 +2457,48 @@ export namespace FeeInfrastructureAccountsResponse {
     }
 }
 
+export class GlobalRewardPoolAccountsRequest extends jspb.Message {
+    getAsset(): string;
+    setAsset(value: string): GlobalRewardPoolAccountsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GlobalRewardPoolAccountsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GlobalRewardPoolAccountsRequest): GlobalRewardPoolAccountsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GlobalRewardPoolAccountsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GlobalRewardPoolAccountsRequest;
+    static deserializeBinaryFromReader(message: GlobalRewardPoolAccountsRequest, reader: jspb.BinaryReader): GlobalRewardPoolAccountsRequest;
+}
+
+export namespace GlobalRewardPoolAccountsRequest {
+    export type AsObject = {
+        asset: string,
+    }
+}
+
+export class GlobalRewardPoolAccountsResponse extends jspb.Message {
+    clearAccountsList(): void;
+    getAccountsList(): Array<vega_vega_pb.Account>;
+    setAccountsList(value: Array<vega_vega_pb.Account>): GlobalRewardPoolAccountsResponse;
+    addAccounts(value?: vega_vega_pb.Account, index?: number): vega_vega_pb.Account;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GlobalRewardPoolAccountsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GlobalRewardPoolAccountsResponse): GlobalRewardPoolAccountsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GlobalRewardPoolAccountsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GlobalRewardPoolAccountsResponse;
+    static deserializeBinaryFromReader(message: GlobalRewardPoolAccountsResponse, reader: jspb.BinaryReader): GlobalRewardPoolAccountsResponse;
+}
+
+export namespace GlobalRewardPoolAccountsResponse {
+    export type AsObject = {
+        accountsList: Array<vega_vega_pb.Account.AsObject>,
+    }
+}
+
 export class OrderByIDRequest extends jspb.Message {
     getOrderId(): string;
     setOrderId(value: string): OrderByIDRequest;

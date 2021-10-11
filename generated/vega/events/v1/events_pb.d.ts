@@ -597,6 +597,10 @@ export class ValidatorUpdate extends jspb.Message {
     setInfoUrl(value: string): ValidatorUpdate;
     getCountry(): string;
     setCountry(value: string): ValidatorUpdate;
+    getName(): string;
+    setName(value: string): ValidatorUpdate;
+    getAvatarUrl(): string;
+    setAvatarUrl(value: string): ValidatorUpdate;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ValidatorUpdate.AsObject;
@@ -616,6 +620,8 @@ export namespace ValidatorUpdate {
         tmPubKey: string,
         infoUrl: string,
         country: string,
+        name: string,
+        avatarUrl: string,
     }
 }
 

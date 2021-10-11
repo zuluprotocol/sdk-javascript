@@ -19,6 +19,12 @@ export class NodeRegistration extends jspb.Message {
     setInfoUrl(value: string): NodeRegistration;
     getCountry(): string;
     setCountry(value: string): NodeRegistration;
+    getId(): string;
+    setId(value: string): NodeRegistration;
+    getName(): string;
+    setName(value: string): NodeRegistration;
+    getAvatarUrl(): string;
+    setAvatarUrl(value: string): NodeRegistration;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NodeRegistration.AsObject;
@@ -37,6 +43,9 @@ export namespace NodeRegistration {
         chainPubKey: string,
         infoUrl: string,
         country: string,
+        id: string,
+        name: string,
+        avatarUrl: string,
     }
 }
 

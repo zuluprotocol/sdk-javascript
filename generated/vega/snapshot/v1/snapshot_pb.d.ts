@@ -162,6 +162,11 @@ export class Payload extends jspb.Message {
     getBankingSeen(): BankingSeen | undefined;
     setBankingSeen(value?: BankingSeen): Payload;
 
+    hasBankingAssetActions(): boolean;
+    clearBankingAssetActions(): void;
+    getBankingAssetActions(): BankingAssetActions | undefined;
+    setBankingAssetActions(value?: BankingAssetActions): Payload;
+
     hasCheckpoint(): boolean;
     clearCheckpoint(): void;
     getCheckpoint(): Checkpoint | undefined;
@@ -237,6 +242,21 @@ export class Payload extends jspb.Message {
     getEpoch(): EpochState | undefined;
     setEpoch(value?: EpochState): Payload;
 
+    hasExecutionIdGenerator(): boolean;
+    clearExecutionIdGenerator(): void;
+    getExecutionIdGenerator(): ExecutionIDGenerator | undefined;
+    setExecutionIdGenerator(value?: ExecutionIDGenerator): Payload;
+
+    hasRewardsPendingPayouts(): boolean;
+    clearRewardsPendingPayouts(): void;
+    getRewardsPendingPayouts(): RewardsPendingPayouts | undefined;
+    setRewardsPendingPayouts(value?: RewardsPendingPayouts): Payload;
+
+    hasGovernanceNode(): boolean;
+    clearGovernanceNode(): void;
+    getGovernanceNode(): GovernanceNode | undefined;
+    setGovernanceNode(value?: GovernanceNode): Payload;
+
     getDataCase(): Payload.DataCase;
 
     serializeBinary(): Uint8Array;
@@ -256,6 +276,7 @@ export namespace Payload {
         bankingWithdrawals?: BankingWithdrawals.AsObject,
         bankingDeposits?: BankingDeposits.AsObject,
         bankingSeen?: BankingSeen.AsObject,
+        bankingAssetActions?: BankingAssetActions.AsObject,
         checkpoint?: Checkpoint.AsObject,
         collateralAccounts?: CollateralAccounts.AsObject,
         collateralAssets?: CollateralAssets.AsObject,
@@ -271,6 +292,9 @@ export namespace Payload {
         marketPositions?: MarketPositions.AsObject,
         appState?: AppState.AsObject,
         epoch?: EpochState.AsObject,
+        executionIdGenerator?: ExecutionIDGenerator.AsObject,
+        rewardsPendingPayouts?: RewardsPendingPayouts.AsObject,
+        governanceNode?: GovernanceNode.AsObject,
     }
 
     export enum DataCase {
@@ -280,21 +304,25 @@ export namespace Payload {
         BANKING_WITHDRAWALS = 3,
         BANKING_DEPOSITS = 4,
         BANKING_SEEN = 5,
-        CHECKPOINT = 6,
-        COLLATERAL_ACCOUNTS = 7,
-        COLLATERAL_ASSETS = 8,
-        DELEGATION_ACTIVE = 9,
-        DELEGATION_PENDING = 10,
-        DELEGATION_AUTO = 11,
-        GOVERNANCE_ACTIVE = 12,
-        GOVERNANCE_ENACTED = 13,
-        STAKING_ACCOUNTS = 14,
-        MATCHING_BOOK = 15,
-        NETWORK_PARAMETERS = 16,
-        EXECUTION_MARKETS = 17,
-        MARKET_POSITIONS = 18,
-        APP_STATE = 19,
-        EPOCH = 20,
+        BANKING_ASSET_ACTIONS = 6,
+        CHECKPOINT = 7,
+        COLLATERAL_ACCOUNTS = 8,
+        COLLATERAL_ASSETS = 9,
+        DELEGATION_ACTIVE = 10,
+        DELEGATION_PENDING = 11,
+        DELEGATION_AUTO = 12,
+        GOVERNANCE_ACTIVE = 13,
+        GOVERNANCE_ENACTED = 14,
+        STAKING_ACCOUNTS = 15,
+        MATCHING_BOOK = 16,
+        NETWORK_PARAMETERS = 17,
+        EXECUTION_MARKETS = 18,
+        MARKET_POSITIONS = 19,
+        APP_STATE = 20,
+        EPOCH = 21,
+        EXECUTION_ID_GENERATOR = 22,
+        REWARDS_PENDING_PAYOUTS = 23,
+        GOVERNANCE_NODE = 24,
     }
 
 }
@@ -468,6 +496,59 @@ export namespace TxRef {
     }
 }
 
+export class AssetAction extends jspb.Message {
+    getId(): string;
+    setId(value: string): AssetAction;
+    getState(): number;
+    setState(value: number): AssetAction;
+    getAsset(): string;
+    setAsset(value: string): AssetAction;
+    getBlockNumber(): number;
+    setBlockNumber(value: number): AssetAction;
+    getTxIndex(): number;
+    setTxIndex(value: number): AssetAction;
+    getHash(): string;
+    setHash(value: string): AssetAction;
+
+    hasBuiltinDeposit(): boolean;
+    clearBuiltinDeposit(): void;
+    getBuiltinDeposit(): vega_chain_events_pb.BuiltinAssetDeposit | undefined;
+    setBuiltinDeposit(value?: vega_chain_events_pb.BuiltinAssetDeposit): AssetAction;
+
+    hasErc20Deposit(): boolean;
+    clearErc20Deposit(): void;
+    getErc20Deposit(): vega_chain_events_pb.ERC20Deposit | undefined;
+    setErc20Deposit(value?: vega_chain_events_pb.ERC20Deposit): AssetAction;
+
+    hasAssetList(): boolean;
+    clearAssetList(): void;
+    getAssetList(): vega_chain_events_pb.ERC20AssetList | undefined;
+    setAssetList(value?: vega_chain_events_pb.ERC20AssetList): AssetAction;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AssetAction.AsObject;
+    static toObject(includeInstance: boolean, msg: AssetAction): AssetAction.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AssetAction, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AssetAction;
+    static deserializeBinaryFromReader(message: AssetAction, reader: jspb.BinaryReader): AssetAction;
+}
+
+export namespace AssetAction {
+    export type AsObject = {
+        id: string,
+        state: number,
+        asset: string,
+        blockNumber: number,
+        txIndex: number,
+        hash: string,
+        builtinDeposit?: vega_chain_events_pb.BuiltinAssetDeposit.AsObject,
+        erc20Deposit?: vega_chain_events_pb.ERC20Deposit.AsObject,
+        assetList?: vega_chain_events_pb.ERC20AssetList.AsObject,
+    }
+}
+
 export class BankingWithdrawals extends jspb.Message {
     clearWithdrawalsList(): void;
     getWithdrawalsList(): Array<Withdrawal>;
@@ -531,6 +612,28 @@ export class BankingSeen extends jspb.Message {
 export namespace BankingSeen {
     export type AsObject = {
         refsList: Array<TxRef.AsObject>,
+    }
+}
+
+export class BankingAssetActions extends jspb.Message {
+    clearAssetActionList(): void;
+    getAssetActionList(): Array<AssetAction>;
+    setAssetActionList(value: Array<AssetAction>): BankingAssetActions;
+    addAssetAction(value?: AssetAction, index?: number): AssetAction;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): BankingAssetActions.AsObject;
+    static toObject(includeInstance: boolean, msg: BankingAssetActions): BankingAssetActions.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: BankingAssetActions, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): BankingAssetActions;
+    static deserializeBinaryFromReader(message: BankingAssetActions, reader: jspb.BinaryReader): BankingAssetActions;
+}
+
+export namespace BankingAssetActions {
+    export type AsObject = {
+        assetActionList: Array<AssetAction.AsObject>,
     }
 }
 
@@ -707,6 +810,28 @@ export namespace GovernanceActive {
     }
 }
 
+export class GovernanceNode extends jspb.Message {
+    clearProposalsList(): void;
+    getProposalsList(): Array<vega_governance_pb.Proposal>;
+    setProposalsList(value: Array<vega_governance_pb.Proposal>): GovernanceNode;
+    addProposals(value?: vega_governance_pb.Proposal, index?: number): vega_governance_pb.Proposal;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GovernanceNode.AsObject;
+    static toObject(includeInstance: boolean, msg: GovernanceNode): GovernanceNode.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GovernanceNode, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GovernanceNode;
+    static deserializeBinaryFromReader(message: GovernanceNode, reader: jspb.BinaryReader): GovernanceNode;
+}
+
+export namespace GovernanceNode {
+    export type AsObject = {
+        proposalsList: Array<vega_governance_pb.Proposal.AsObject>,
+    }
+}
+
 export class StakingAccount extends jspb.Message {
     getParty(): string;
     setParty(value: string): StakingAccount;
@@ -768,6 +893,12 @@ export class MatchingBook extends jspb.Message {
     getSellList(): Array<vega_vega_pb.Order>;
     setSellList(value: Array<vega_vega_pb.Order>): MatchingBook;
     addSell(value?: vega_vega_pb.Order, index?: number): vega_vega_pb.Order;
+    getLastTradedPrice(): string;
+    setLastTradedPrice(value: string): MatchingBook;
+    getAuction(): boolean;
+    setAuction(value: boolean): MatchingBook;
+    getBatchId(): number;
+    setBatchId(value: number): MatchingBook;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): MatchingBook.AsObject;
@@ -784,6 +915,9 @@ export namespace MatchingBook {
         marketId: string,
         buyList: Array<vega_vega_pb.Order.AsObject>,
         sellList: Array<vega_vega_pb.Order.AsObject>,
+        lastTradedPrice: string,
+        auction: boolean,
+        batchId: number,
     }
 }
 
@@ -1330,6 +1464,95 @@ export namespace EpochState {
         expireTime: number,
         readyToStartNewEpoch: boolean,
         readyToEndEpoch: boolean,
+    }
+}
+
+export class ExecutionIDGenerator extends jspb.Message {
+    getBatches(): number;
+    setBatches(value: number): ExecutionIDGenerator;
+    getOrders(): number;
+    setOrders(value: number): ExecutionIDGenerator;
+    getProposals(): number;
+    setProposals(value: number): ExecutionIDGenerator;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ExecutionIDGenerator.AsObject;
+    static toObject(includeInstance: boolean, msg: ExecutionIDGenerator): ExecutionIDGenerator.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ExecutionIDGenerator, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ExecutionIDGenerator;
+    static deserializeBinaryFromReader(message: ExecutionIDGenerator, reader: jspb.BinaryReader): ExecutionIDGenerator;
+}
+
+export namespace ExecutionIDGenerator {
+    export type AsObject = {
+        batches: number,
+        orders: number,
+        proposals: number,
+    }
+}
+
+export class RewardsPendingPayouts extends jspb.Message {
+    getRewardTime(): number;
+    setRewardTime(value: number): RewardsPendingPayouts;
+    getFromAccount(): string;
+    setFromAccount(value: string): RewardsPendingPayouts;
+    getAsset(): string;
+    setAsset(value: string): RewardsPendingPayouts;
+    clearRewardPartyAmountList(): void;
+    getRewardPartyAmountList(): Array<RewardPartyAmount>;
+    setRewardPartyAmountList(value: Array<RewardPartyAmount>): RewardsPendingPayouts;
+    addRewardPartyAmount(value?: RewardPartyAmount, index?: number): RewardPartyAmount;
+    getTotalReward(): string;
+    setTotalReward(value: string): RewardsPendingPayouts;
+    getEpochSeq(): string;
+    setEpochSeq(value: string): RewardsPendingPayouts;
+    getTimestamp(): number;
+    setTimestamp(value: number): RewardsPendingPayouts;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RewardsPendingPayouts.AsObject;
+    static toObject(includeInstance: boolean, msg: RewardsPendingPayouts): RewardsPendingPayouts.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RewardsPendingPayouts, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RewardsPendingPayouts;
+    static deserializeBinaryFromReader(message: RewardsPendingPayouts, reader: jspb.BinaryReader): RewardsPendingPayouts;
+}
+
+export namespace RewardsPendingPayouts {
+    export type AsObject = {
+        rewardTime: number,
+        fromAccount: string,
+        asset: string,
+        rewardPartyAmountList: Array<RewardPartyAmount.AsObject>,
+        totalReward: string,
+        epochSeq: string,
+        timestamp: number,
+    }
+}
+
+export class RewardPartyAmount extends jspb.Message {
+    getParty(): string;
+    setParty(value: string): RewardPartyAmount;
+    getAmount(): string;
+    setAmount(value: string): RewardPartyAmount;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RewardPartyAmount.AsObject;
+    static toObject(includeInstance: boolean, msg: RewardPartyAmount): RewardPartyAmount.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RewardPartyAmount, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RewardPartyAmount;
+    static deserializeBinaryFromReader(message: RewardPartyAmount, reader: jspb.BinaryReader): RewardPartyAmount;
+}
+
+export namespace RewardPartyAmount {
+    export type AsObject = {
+        party: string,
+        amount: string,
     }
 }
 

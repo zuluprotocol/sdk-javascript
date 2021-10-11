@@ -653,6 +653,28 @@ function deserialize_datanode_api_v1_GetVotesByPartyResponse(buffer_arg) {
   return data$node_api_v1_trading_data_pb.GetVotesByPartyResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_datanode_api_v1_GlobalRewardPoolAccountsRequest(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest)) {
+    throw new Error('Expected argument of type datanode.api.v1.GlobalRewardPoolAccountsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GlobalRewardPoolAccountsRequest(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_GlobalRewardPoolAccountsResponse(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse)) {
+    throw new Error('Expected argument of type datanode.api.v1.GlobalRewardPoolAccountsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GlobalRewardPoolAccountsResponse(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_datanode_api_v1_LastTradeRequest(arg) {
   if (!(arg instanceof data$node_api_v1_trading_data_pb.LastTradeRequest)) {
     throw new Error('Expected argument of type datanode.api.v1.LastTradeRequest');
@@ -1618,6 +1640,20 @@ feeInfrastructureAccounts: {
     requestDeserialize: deserialize_datanode_api_v1_FeeInfrastructureAccountsRequest,
     responseSerialize: serialize_datanode_api_v1_FeeInfrastructureAccountsResponse,
     responseDeserialize: deserialize_datanode_api_v1_FeeInfrastructureAccountsResponse,
+  },
+  // Get a list of accounts holding rewards pools
+// Can be filtered by asset, there will be 1 reward pool account per
+// asset in the network.
+globalRewardPoolAccounts: {
+    path: '/datanode.api.v1.TradingDataService/GlobalRewardPoolAccounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsRequest,
+    responseType: data$node_api_v1_trading_data_pb.GlobalRewardPoolAccountsResponse,
+    requestSerialize: serialize_datanode_api_v1_GlobalRewardPoolAccountsRequest,
+    requestDeserialize: deserialize_datanode_api_v1_GlobalRewardPoolAccountsRequest,
+    responseSerialize: serialize_datanode_api_v1_GlobalRewardPoolAccountsResponse,
+    responseDeserialize: deserialize_datanode_api_v1_GlobalRewardPoolAccountsResponse,
   },
   // -- Candles --
 //
