@@ -1,6 +1,6 @@
 # Vega API Javascript SDK
 
-Version: 0.44.0-pre1
+Version: 0.44.0
 
 This is the Vega API client, which can be used to produce transactions for the Vega gRPC API.
 
