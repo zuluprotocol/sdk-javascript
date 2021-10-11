@@ -4673,7 +4673,9 @@ proto.vega.events.v1.ValidatorUpdate.toObject = function(includeInstance, msg) {
     ethereumAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
     tmPubKey: jspb.Message.getFieldWithDefault(msg, 4, ""),
     infoUrl: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    country: jspb.Message.getFieldWithDefault(msg, 6, "")
+    country: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    avatarUrl: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -4733,6 +4735,14 @@ proto.vega.events.v1.ValidatorUpdate.deserializeBinaryFromReader = function(msg,
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCountry(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAvatarUrl(value);
       break;
     default:
       reader.skipField();
@@ -4802,6 +4812,20 @@ proto.vega.events.v1.ValidatorUpdate.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getAvatarUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -4913,6 +4937,42 @@ proto.vega.events.v1.ValidatorUpdate.prototype.getCountry = function() {
  */
 proto.vega.events.v1.ValidatorUpdate.prototype.setCountry = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string name = 7;
+ * @return {string}
+ */
+proto.vega.events.v1.ValidatorUpdate.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.events.v1.ValidatorUpdate} returns this
+ */
+proto.vega.events.v1.ValidatorUpdate.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string avatar_url = 8;
+ * @return {string}
+ */
+proto.vega.events.v1.ValidatorUpdate.prototype.getAvatarUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.events.v1.ValidatorUpdate} returns this
+ */
+proto.vega.events.v1.ValidatorUpdate.prototype.setAvatarUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 

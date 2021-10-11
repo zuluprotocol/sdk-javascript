@@ -4,12 +4,16 @@ var data_node_api_v1_trading_data_grpc = require('./generated/data-node/api/v1/t
 var data_node_api_v1_trading_data = require('./generated/data-node/api/v1/trading_data_pb.js')
 var github_com_mwitkow_go_proto_validators_validator_grpc = require('./generated/github.com/mwitkow/go-proto-validators/validator_grpc_pb.js')
 var github_com_mwitkow_go_proto_validators_validator = require('./generated/github.com/mwitkow/go-proto-validators/validator_pb.js')
-var vega_api_trading_grpc = require('./generated/vega/api/trading_grpc_pb.js')
-var vega_api_trading = require('./generated/vega/api/trading_pb.js')
+var vega_api_v1_core_grpc = require('./generated/vega/api/v1/core_grpc_pb.js')
+var vega_api_v1_core = require('./generated/vega/api/v1/core_pb.js')
+var vega_api_v1_corestate_grpc = require('./generated/vega/api/v1/corestate_grpc_pb.js')
+var vega_api_v1_corestate = require('./generated/vega/api/v1/corestate_pb.js')
 var vega_assets_grpc = require('./generated/vega/assets_grpc_pb.js')
 var vega_assets = require('./generated/vega/assets_pb.js')
 var vega_chain_events_grpc = require('./generated/vega/chain_events_grpc_pb.js')
 var vega_chain_events = require('./generated/vega/chain_events_pb.js')
+var vega_checkpoint_v1_checkpoint_grpc = require('./generated/vega/checkpoint/v1/checkpoint_grpc_pb.js')
+var vega_checkpoint_v1_checkpoint = require('./generated/vega/checkpoint/v1/checkpoint_pb.js')
 var vega_commands_v1_commands_grpc = require('./generated/vega/commands/v1/commands_grpc_pb.js')
 var vega_commands_v1_commands = require('./generated/vega/commands/v1/commands_pb.js')
 var vega_commands_v1_oracles_grpc = require('./generated/vega/commands/v1/oracles_grpc_pb.js')
@@ -18,8 +22,6 @@ var vega_commands_v1_transaction_grpc = require('./generated/vega/commands/v1/tr
 var vega_commands_v1_transaction = require('./generated/vega/commands/v1/transaction_pb.js')
 var vega_commands_v1_validator_commands_grpc = require('./generated/vega/commands/v1/validator_commands_grpc_pb.js')
 var vega_commands_v1_validator_commands = require('./generated/vega/commands/v1/validator_commands_pb.js')
-var vega_coreapi_v1_coreapi_grpc = require('./generated/vega/coreapi/v1/coreapi_grpc_pb.js')
-var vega_coreapi_v1_coreapi = require('./generated/vega/coreapi/v1/coreapi_pb.js')
 var vega_events_v1_events_grpc = require('./generated/vega/events/v1/events_grpc_pb.js')
 var vega_events_v1_events = require('./generated/vega/events/v1/events_pb.js')
 var vega_governance_grpc = require('./generated/vega/governance_grpc_pb.js')
@@ -58,13 +60,23 @@ module.exports = {
   },
   vega: {
     api: {
-      trading: vega_api_trading,
-      trading_grpc: vega_api_trading_grpc
+      v1: {
+        core: vega_api_v1_core,
+        core_grpc: vega_api_v1_core_grpc,
+        corestate: vega_api_v1_corestate,
+        corestate_grpc: vega_api_v1_corestate_grpc
+      }
     },
     assets: vega_assets,
     assets_grpc: vega_assets_grpc,
     chain_events: vega_chain_events,
     chain_events_grpc: vega_chain_events_grpc,
+    checkpoint: {
+      v1: {
+        checkpoint: vega_checkpoint_v1_checkpoint,
+        checkpoint_grpc: vega_checkpoint_v1_checkpoint_grpc
+      }
+    },
     commands: {
       v1: {
         commands: vega_commands_v1_commands,
@@ -75,12 +87,6 @@ module.exports = {
         transaction_grpc: vega_commands_v1_transaction_grpc,
         validator_commands: vega_commands_v1_validator_commands,
         validator_commands_grpc: vega_commands_v1_validator_commands_grpc
-      }
-    },
-    coreapi: {
-      v1: {
-        coreapi: vega_coreapi_v1_coreapi,
-        coreapi_grpc: vega_coreapi_v1_coreapi_grpc
       }
     },
     events: {

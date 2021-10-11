@@ -144,7 +144,10 @@ proto.vega.commands.v1.NodeRegistration.toObject = function(includeInstance, msg
     ethereumAddress: jspb.Message.getFieldWithDefault(msg, 2, ""),
     chainPubKey: jspb.Message.getFieldWithDefault(msg, 3, ""),
     infoUrl: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    country: jspb.Message.getFieldWithDefault(msg, 5, "")
+    country: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    avatarUrl: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -200,6 +203,18 @@ proto.vega.commands.v1.NodeRegistration.deserializeBinaryFromReader = function(m
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setCountry(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAvatarUrl(value);
       break;
     default:
       reader.skipField();
@@ -262,6 +277,27 @@ proto.vega.commands.v1.NodeRegistration.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getAvatarUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -355,6 +391,60 @@ proto.vega.commands.v1.NodeRegistration.prototype.getCountry = function() {
  */
 proto.vega.commands.v1.NodeRegistration.prototype.setCountry = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string id = 6;
+ * @return {string}
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.commands.v1.NodeRegistration} returns this
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string name = 7;
+ * @return {string}
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.commands.v1.NodeRegistration} returns this
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string avatar_url = 8;
+ * @return {string}
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.getAvatarUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.commands.v1.NodeRegistration} returns this
+ */
+proto.vega.commands.v1.NodeRegistration.prototype.setAvatarUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 

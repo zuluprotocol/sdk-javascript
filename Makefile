@@ -3,6 +3,8 @@
 SHELL := /usr/bin/env bash
 GENERATED_DIR := generated
 
+VEGAPROTOS ?= $(HOME)/src/github.com/vegaprotocol/protos
+
 .PHONY: default
 default:
 	@echo "Please select a target:"

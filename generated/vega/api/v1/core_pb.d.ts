@@ -1,21 +1,21 @@
-// package: api.v1
-// file: vega/api/trading.proto
+// package: vega.api.v1
+// file: vega/api/v1/core.proto
 
 /* tslint:disable */
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as vega_vega_pb from "../../vega/vega_pb";
-import * as vega_markets_pb from "../../vega/markets_pb";
-import * as vega_governance_pb from "../../vega/governance_pb";
-import * as vega_assets_pb from "../../vega/assets_pb";
-import * as vega_events_v1_events_pb from "../../vega/events/v1/events_pb";
-import * as vega_oracles_v1_spec_pb from "../../vega/oracles/v1/spec_pb";
-import * as vega_oracles_v1_data_pb from "../../vega/oracles/v1/data_pb";
-import * as vega_commands_v1_commands_pb from "../../vega/commands/v1/commands_pb";
-import * as vega_commands_v1_transaction_pb from "../../vega/commands/v1/transaction_pb";
-import * as vega_commands_v1_validator_commands_pb from "../../vega/commands/v1/validator_commands_pb";
-import * as github_com_mwitkow_go_proto_validators_validator_pb from "../../github.com/mwitkow/go-proto-validators/validator_pb";
+import * as vega_vega_pb from "../../../vega/vega_pb";
+import * as vega_markets_pb from "../../../vega/markets_pb";
+import * as vega_governance_pb from "../../../vega/governance_pb";
+import * as vega_assets_pb from "../../../vega/assets_pb";
+import * as vega_events_v1_events_pb from "../../../vega/events/v1/events_pb";
+import * as vega_oracles_v1_spec_pb from "../../../vega/oracles/v1/spec_pb";
+import * as vega_oracles_v1_data_pb from "../../../vega/oracles/v1/data_pb";
+import * as vega_commands_v1_commands_pb from "../../../vega/commands/v1/commands_pb";
+import * as vega_commands_v1_transaction_pb from "../../../vega/commands/v1/transaction_pb";
+import * as vega_commands_v1_validator_commands_pb from "../../../vega/commands/v1/validator_commands_pb";
+import * as github_com_mwitkow_go_proto_validators_validator_pb from "../../../github.com/mwitkow/go-proto-validators/validator_pb";
 
 export class PropagateChainEventRequest extends jspb.Message {
     getEvent(): Uint8Array | string;

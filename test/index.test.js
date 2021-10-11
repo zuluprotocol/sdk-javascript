@@ -11,9 +11,11 @@ test('Basic fields are exported', t => {
   * fields shift unexpectedly. */
   t.ok(mainExport.data_node.api.v1.trading_data)
 
-  t.ok(mainExport.vega.api.trading)
+  t.ok(mainExport.vega.api.v1.core)
+  t.ok(mainExport.vega.api.v1.core_grpc)
+  t.ok(mainExport.vega.api.v1.corestate)
+  t.ok(mainExport.vega.api.v1.corestate_grpc)
   t.ok(mainExport.vega.commands)
-  t.ok(mainExport.vega.coreapi)
   t.ok(mainExport.vega.events)
   t.ok(mainExport.vega.oracles)
   t.ok(mainExport.vega.snapshot)

@@ -52,10 +52,6 @@ export namespace Timestamp {
 export class Party extends jspb.Message {
     getId(): string;
     setId(value: string): Party;
-    clearDelegationsList(): void;
-    getDelegationsList(): Array<Delegation>;
-    setDelegationsList(value: Array<Delegation>): Party;
-    addDelegations(value?: Delegation, index?: number): Delegation;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Party.AsObject;
@@ -70,7 +66,6 @@ export class Party extends jspb.Message {
 export namespace Party {
     export type AsObject = {
         id: string,
-        delegationsList: Array<Delegation.AsObject>,
     }
 }
 
@@ -1612,6 +1607,10 @@ export class Node extends jspb.Message {
     setScore(value: string): Node;
     getNormalisedScore(): string;
     setNormalisedScore(value: string): Node;
+    getName(): string;
+    setName(value: string): Node;
+    getAvatarUrl(): string;
+    setAvatarUrl(value: string): Node;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Node.AsObject;
@@ -1641,6 +1640,8 @@ export namespace Node {
         delegationsList: Array<Delegation.AsObject>,
         score: string,
         normalisedScore: string,
+        name: string,
+        avatarUrl: string,
     }
 }
 
