@@ -303,6 +303,32 @@ export namespace NewAsset {
     }
 }
 
+export class NewFreeform extends jspb.Message {
+    getUrl(): string;
+    setUrl(value: string): NewFreeform;
+    getDescription(): string;
+    setDescription(value: string): NewFreeform;
+    getHash(): string;
+    setHash(value: string): NewFreeform;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): NewFreeform.AsObject;
+    static toObject(includeInstance: boolean, msg: NewFreeform): NewFreeform.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: NewFreeform, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): NewFreeform;
+    static deserializeBinaryFromReader(message: NewFreeform, reader: jspb.BinaryReader): NewFreeform;
+}
+
+export namespace NewFreeform {
+    export type AsObject = {
+        url: string,
+        description: string,
+        hash: string,
+    }
+}
+
 export class ProposalTerms extends jspb.Message {
     getClosingTimestamp(): number;
     setClosingTimestamp(value: number): ProposalTerms;
@@ -331,6 +357,11 @@ export class ProposalTerms extends jspb.Message {
     getNewAsset(): NewAsset | undefined;
     setNewAsset(value?: NewAsset): ProposalTerms;
 
+    hasNewFreeform(): boolean;
+    clearNewFreeform(): void;
+    getNewFreeform(): NewFreeform | undefined;
+    setNewFreeform(value?: NewFreeform): ProposalTerms;
+
     getChangeCase(): ProposalTerms.ChangeCase;
 
     serializeBinary(): Uint8Array;
@@ -352,6 +383,7 @@ export namespace ProposalTerms {
         newMarket?: NewMarket.AsObject,
         updateNetworkParameter?: UpdateNetworkParameter.AsObject,
         newAsset?: NewAsset.AsObject,
+        newFreeform?: NewFreeform.AsObject,
     }
 
     export enum ChangeCase {
@@ -360,6 +392,7 @@ export namespace ProposalTerms {
         NEW_MARKET = 102,
         UPDATE_NETWORK_PARAMETER = 103,
         NEW_ASSET = 104,
+        NEW_FREEFORM = 105,
     }
 
 }

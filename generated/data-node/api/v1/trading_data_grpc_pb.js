@@ -323,6 +323,50 @@ function deserialize_datanode_api_v1_GetEpochResponse(buffer_arg) {
   return data$node_api_v1_trading_data_pb.GetEpochResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_datanode_api_v1_GetKeyRotationsByNodeRequest(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest)) {
+    throw new Error('Expected argument of type datanode.api.v1.GetKeyRotationsByNodeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GetKeyRotationsByNodeRequest(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_GetKeyRotationsByNodeResponse(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse)) {
+    throw new Error('Expected argument of type datanode.api.v1.GetKeyRotationsByNodeResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GetKeyRotationsByNodeResponse(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_GetKeyRotationsRequest(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GetKeyRotationsRequest)) {
+    throw new Error('Expected argument of type datanode.api.v1.GetKeyRotationsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GetKeyRotationsRequest(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GetKeyRotationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_GetKeyRotationsResponse(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.GetKeyRotationsResponse)) {
+    throw new Error('Expected argument of type datanode.api.v1.GetKeyRotationsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_GetKeyRotationsResponse(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.GetKeyRotationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_datanode_api_v1_GetNetworkParametersProposalsRequest(arg) {
   if (!(arg instanceof data$node_api_v1_trading_data_pb.GetNetworkParametersProposalsRequest)) {
     throw new Error('Expected argument of type datanode.api.v1.GetNetworkParametersProposalsRequest');
@@ -983,6 +1027,28 @@ function deserialize_datanode_api_v1_NetworkParametersResponse(buffer_arg) {
   return data$node_api_v1_trading_data_pb.NetworkParametersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_datanode_api_v1_ObserveDelegationsRequest(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.ObserveDelegationsRequest)) {
+    throw new Error('Expected argument of type datanode.api.v1.ObserveDelegationsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_ObserveDelegationsRequest(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.ObserveDelegationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_ObserveDelegationsResponse(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.ObserveDelegationsResponse)) {
+    throw new Error('Expected argument of type datanode.api.v1.ObserveDelegationsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_ObserveDelegationsResponse(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.ObserveDelegationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_datanode_api_v1_ObserveEventBusRequest(arg) {
   if (!(arg instanceof data$node_api_v1_trading_data_pb.ObserveEventBusRequest)) {
     throw new Error('Expected argument of type datanode.api.v1.ObserveEventBusRequest');
@@ -1091,6 +1157,28 @@ function serialize_datanode_api_v1_ObserveProposalVotesResponse(arg) {
 
 function deserialize_datanode_api_v1_ObserveProposalVotesResponse(buffer_arg) {
   return data$node_api_v1_trading_data_pb.ObserveProposalVotesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_ObserveRewardDetailsRequest(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.ObserveRewardDetailsRequest)) {
+    throw new Error('Expected argument of type datanode.api.v1.ObserveRewardDetailsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_ObserveRewardDetailsRequest(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.ObserveRewardDetailsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_datanode_api_v1_ObserveRewardDetailsResponse(arg) {
+  if (!(arg instanceof data$node_api_v1_trading_data_pb.ObserveRewardDetailsResponse)) {
+    throw new Error('Expected argument of type datanode.api.v1.ObserveRewardDetailsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_datanode_api_v1_ObserveRewardDetailsResponse(buffer_arg) {
+  return data$node_api_v1_trading_data_pb.ObserveRewardDetailsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_datanode_api_v1_OracleDataBySpecRequest(arg) {
@@ -1641,7 +1729,7 @@ feeInfrastructureAccounts: {
     responseSerialize: serialize_datanode_api_v1_FeeInfrastructureAccountsResponse,
     responseDeserialize: deserialize_datanode_api_v1_FeeInfrastructureAccountsResponse,
   },
-  // Get a list of accounts holding rewards pools
+  // Get a list of accounts holding reward pools
 // Can be filtered by asset, there will be 1 reward pool account per
 // asset in the network.
 globalRewardPoolAccounts: {
@@ -2117,6 +2205,30 @@ getNodeByID: {
     responseSerialize: serialize_datanode_api_v1_GetNodeByIDResponse,
     responseDeserialize: deserialize_datanode_api_v1_GetNodeByIDResponse,
   },
+  // Get all key rotations
+getKeyRotations: {
+    path: '/datanode.api.v1.TradingDataService/GetKeyRotations',
+    requestStream: false,
+    responseStream: false,
+    requestType: data$node_api_v1_trading_data_pb.GetKeyRotationsRequest,
+    responseType: data$node_api_v1_trading_data_pb.GetKeyRotationsResponse,
+    requestSerialize: serialize_datanode_api_v1_GetKeyRotationsRequest,
+    requestDeserialize: deserialize_datanode_api_v1_GetKeyRotationsRequest,
+    responseSerialize: serialize_datanode_api_v1_GetKeyRotationsResponse,
+    responseDeserialize: deserialize_datanode_api_v1_GetKeyRotationsResponse,
+  },
+  // Get all key rotations by node
+getKeyRotationsByNode: {
+    path: '/datanode.api.v1.TradingDataService/GetKeyRotationsByNode',
+    requestStream: false,
+    responseStream: false,
+    requestType: data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest,
+    responseType: data$node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse,
+    requestSerialize: serialize_datanode_api_v1_GetKeyRotationsByNodeRequest,
+    requestDeserialize: deserialize_datanode_api_v1_GetKeyRotationsByNodeRequest,
+    responseSerialize: serialize_datanode_api_v1_GetKeyRotationsByNodeResponse,
+    responseDeserialize: deserialize_datanode_api_v1_GetKeyRotationsByNodeResponse,
+  },
   // Get data for a specific epoch, if id omitted it gets the current epoch
 getEpoch: {
     path: '/datanode.api.v1.TradingDataService/GetEpoch',
@@ -2444,7 +2556,19 @@ oracleDataBySpec: {
     responseSerialize: serialize_datanode_api_v1_OracleDataBySpecResponse,
     responseDeserialize: deserialize_datanode_api_v1_OracleDataBySpecResponse,
   },
-  // Get Rewards data
+  // subscribe to reward details
+observeRewardDetails: {
+    path: '/datanode.api.v1.TradingDataService/ObserveRewardDetails',
+    requestStream: false,
+    responseStream: true,
+    requestType: data$node_api_v1_trading_data_pb.ObserveRewardDetailsRequest,
+    responseType: data$node_api_v1_trading_data_pb.ObserveRewardDetailsResponse,
+    requestSerialize: serialize_datanode_api_v1_ObserveRewardDetailsRequest,
+    requestDeserialize: deserialize_datanode_api_v1_ObserveRewardDetailsRequest,
+    responseSerialize: serialize_datanode_api_v1_ObserveRewardDetailsResponse,
+    responseDeserialize: deserialize_datanode_api_v1_ObserveRewardDetailsResponse,
+  },
+  // Get Reward data
 getRewardDetails: {
     path: '/datanode.api.v1.TradingDataService/GetRewardDetails',
     requestStream: false,
@@ -2478,6 +2602,18 @@ delegations: {
     requestDeserialize: deserialize_datanode_api_v1_DelegationsRequest,
     responseSerialize: serialize_datanode_api_v1_DelegationsResponse,
     responseDeserialize: deserialize_datanode_api_v1_DelegationsResponse,
+  },
+  // subscribe to delegation events
+observeDelegations: {
+    path: '/datanode.api.v1.TradingDataService/ObserveDelegations',
+    requestStream: false,
+    responseStream: true,
+    requestType: data$node_api_v1_trading_data_pb.ObserveDelegationsRequest,
+    responseType: data$node_api_v1_trading_data_pb.ObserveDelegationsResponse,
+    requestSerialize: serialize_datanode_api_v1_ObserveDelegationsRequest,
+    requestDeserialize: deserialize_datanode_api_v1_ObserveDelegationsRequest,
+    responseSerialize: serialize_datanode_api_v1_ObserveDelegationsResponse,
+    responseDeserialize: deserialize_datanode_api_v1_ObserveDelegationsResponse,
   },
   partyStake: {
     path: '/datanode.api.v1.TradingDataService/PartyStake',

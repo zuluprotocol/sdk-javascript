@@ -65,6 +65,14 @@ export class Checkpoint extends jspb.Message {
     getBlock_asU8(): Uint8Array;
     getBlock_asB64(): string;
     setBlock(value: Uint8Array | string): Checkpoint;
+    getRewards(): Uint8Array | string;
+    getRewards_asU8(): Uint8Array;
+    getRewards_asB64(): string;
+    setRewards(value: Uint8Array | string): Checkpoint;
+    getKeyRotations(): Uint8Array | string;
+    getKeyRotations_asU8(): Uint8Array;
+    getKeyRotations_asB64(): string;
+    setKeyRotations(value: Uint8Array | string): Checkpoint;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Checkpoint.AsObject;
@@ -85,6 +93,8 @@ export namespace Checkpoint {
         delegation: Uint8Array | string,
         epoch: Uint8Array | string,
         block: Uint8Array | string,
+        rewards: Uint8Array | string,
+        keyRotations: Uint8Array | string,
     }
 }
 
@@ -309,5 +319,163 @@ export class Block extends jspb.Message {
 export namespace Block {
     export type AsObject = {
         height: number,
+    }
+}
+
+export class Rewards extends jspb.Message {
+    clearRewardsList(): void;
+    getRewardsList(): Array<RewardPayout>;
+    setRewardsList(value: Array<RewardPayout>): Rewards;
+    addRewards(value?: RewardPayout, index?: number): RewardPayout;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Rewards.AsObject;
+    static toObject(includeInstance: boolean, msg: Rewards): Rewards.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Rewards, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Rewards;
+    static deserializeBinaryFromReader(message: Rewards, reader: jspb.BinaryReader): Rewards;
+}
+
+export namespace Rewards {
+    export type AsObject = {
+        rewardsList: Array<RewardPayout.AsObject>,
+    }
+}
+
+export class RewardPayout extends jspb.Message {
+    getPayoutTime(): number;
+    setPayoutTime(value: number): RewardPayout;
+    clearRewardsPayoutList(): void;
+    getRewardsPayoutList(): Array<PendingRewardPayout>;
+    setRewardsPayoutList(value: Array<PendingRewardPayout>): RewardPayout;
+    addRewardsPayout(value?: PendingRewardPayout, index?: number): PendingRewardPayout;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RewardPayout.AsObject;
+    static toObject(includeInstance: boolean, msg: RewardPayout): RewardPayout.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RewardPayout, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RewardPayout;
+    static deserializeBinaryFromReader(message: RewardPayout, reader: jspb.BinaryReader): RewardPayout;
+}
+
+export namespace RewardPayout {
+    export type AsObject = {
+        payoutTime: number,
+        rewardsPayoutList: Array<PendingRewardPayout.AsObject>,
+    }
+}
+
+export class PendingRewardPayout extends jspb.Message {
+    getFromAccount(): string;
+    setFromAccount(value: string): PendingRewardPayout;
+    getAsset(): string;
+    setAsset(value: string): PendingRewardPayout;
+    clearPartyAmountList(): void;
+    getPartyAmountList(): Array<PartyAmount>;
+    setPartyAmountList(value: Array<PartyAmount>): PendingRewardPayout;
+    addPartyAmount(value?: PartyAmount, index?: number): PartyAmount;
+    getTotalReward(): string;
+    setTotalReward(value: string): PendingRewardPayout;
+    getEpochSeq(): string;
+    setEpochSeq(value: string): PendingRewardPayout;
+    getTimestamp(): number;
+    setTimestamp(value: number): PendingRewardPayout;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): PendingRewardPayout.AsObject;
+    static toObject(includeInstance: boolean, msg: PendingRewardPayout): PendingRewardPayout.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: PendingRewardPayout, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): PendingRewardPayout;
+    static deserializeBinaryFromReader(message: PendingRewardPayout, reader: jspb.BinaryReader): PendingRewardPayout;
+}
+
+export namespace PendingRewardPayout {
+    export type AsObject = {
+        fromAccount: string,
+        asset: string,
+        partyAmountList: Array<PartyAmount.AsObject>,
+        totalReward: string,
+        epochSeq: string,
+        timestamp: number,
+    }
+}
+
+export class PartyAmount extends jspb.Message {
+    getParty(): string;
+    setParty(value: string): PartyAmount;
+    getAmount(): string;
+    setAmount(value: string): PartyAmount;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): PartyAmount.AsObject;
+    static toObject(includeInstance: boolean, msg: PartyAmount): PartyAmount.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: PartyAmount, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): PartyAmount;
+    static deserializeBinaryFromReader(message: PartyAmount, reader: jspb.BinaryReader): PartyAmount;
+}
+
+export namespace PartyAmount {
+    export type AsObject = {
+        party: string,
+        amount: string,
+    }
+}
+
+export class PendingKeyRotation extends jspb.Message {
+    getRelativeTargetBlockHeight(): number;
+    setRelativeTargetBlockHeight(value: number): PendingKeyRotation;
+    getNodeId(): string;
+    setNodeId(value: string): PendingKeyRotation;
+    getNewPubKey(): string;
+    setNewPubKey(value: string): PendingKeyRotation;
+    getNewPubKeyIndex(): number;
+    setNewPubKeyIndex(value: number): PendingKeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): PendingKeyRotation.AsObject;
+    static toObject(includeInstance: boolean, msg: PendingKeyRotation): PendingKeyRotation.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: PendingKeyRotation, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): PendingKeyRotation;
+    static deserializeBinaryFromReader(message: PendingKeyRotation, reader: jspb.BinaryReader): PendingKeyRotation;
+}
+
+export namespace PendingKeyRotation {
+    export type AsObject = {
+        relativeTargetBlockHeight: number,
+        nodeId: string,
+        newPubKey: string,
+        newPubKeyIndex: number,
+    }
+}
+
+export class KeyRotations extends jspb.Message {
+    clearPendingKeyRotationsList(): void;
+    getPendingKeyRotationsList(): Array<PendingKeyRotation>;
+    setPendingKeyRotationsList(value: Array<PendingKeyRotation>): KeyRotations;
+    addPendingKeyRotations(value?: PendingKeyRotation, index?: number): PendingKeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): KeyRotations.AsObject;
+    static toObject(includeInstance: boolean, msg: KeyRotations): KeyRotations.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: KeyRotations, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): KeyRotations;
+    static deserializeBinaryFromReader(message: KeyRotations, reader: jspb.BinaryReader): KeyRotations;
+}
+
+export namespace KeyRotations {
+    export type AsObject = {
+        pendingKeyRotationsList: Array<PendingKeyRotation.AsObject>,
     }
 }

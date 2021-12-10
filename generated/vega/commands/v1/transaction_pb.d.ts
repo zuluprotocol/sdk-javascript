@@ -80,6 +80,11 @@ export class InputData extends jspb.Message {
     getChainEvent(): vega_commands_v1_validator_commands_pb.ChainEvent | undefined;
     setChainEvent(value?: vega_commands_v1_validator_commands_pb.ChainEvent): InputData;
 
+    hasKeyRotateSubmission(): boolean;
+    clearKeyRotateSubmission(): void;
+    getKeyRotateSubmission(): vega_commands_v1_validator_commands_pb.KeyRotateSubmission | undefined;
+    setKeyRotateSubmission(value?: vega_commands_v1_validator_commands_pb.KeyRotateSubmission): InputData;
+
     hasOracleDataSubmission(): boolean;
     clearOracleDataSubmission(): void;
     getOracleDataSubmission(): vega_commands_v1_oracles_pb.OracleDataSubmission | undefined;
@@ -119,6 +124,7 @@ export namespace InputData {
         nodeVote?: vega_commands_v1_validator_commands_pb.NodeVote.AsObject,
         nodeSignature?: vega_commands_v1_validator_commands_pb.NodeSignature.AsObject,
         chainEvent?: vega_commands_v1_validator_commands_pb.ChainEvent.AsObject,
+        keyRotateSubmission?: vega_commands_v1_validator_commands_pb.KeyRotateSubmission.AsObject,
         oracleDataSubmission?: vega_commands_v1_oracles_pb.OracleDataSubmission.AsObject,
         restoreSnapshotSubmission?: vega_commands_v1_commands_pb.RestoreSnapshot.AsObject,
     }
@@ -138,6 +144,7 @@ export namespace InputData {
         NODE_VOTE = 2002,
         NODE_SIGNATURE = 2003,
         CHAIN_EVENT = 2004,
+        KEY_ROTATE_SUBMISSION = 2005,
         ORACLE_DATA_SUBMISSION = 3001,
         RESTORE_SNAPSHOT_SUBMISSION = 4001,
     }

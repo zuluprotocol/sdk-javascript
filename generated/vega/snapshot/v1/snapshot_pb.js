@@ -26,6 +26,8 @@ var vega_governance_pb = require('../../../vega/governance_pb.js');
 goog.object.extend(proto, vega_governance_pb);
 var vega_events_v1_events_pb = require('../../../vega/events/v1/events_pb.js');
 goog.object.extend(proto, vega_events_v1_events_pb);
+var vega_commands_v1_validator_commands_pb = require('../../../vega/commands/v1/validator_commands_pb.js');
+goog.object.extend(proto, vega_commands_v1_validator_commands_pb);
 goog.exportSymbol('proto.vega.snapshot.v1.ActiveAssets', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.AppState', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.AssetAction', null, global);
@@ -34,33 +36,56 @@ goog.exportSymbol('proto.vega.snapshot.v1.BankingAssetActions', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.BankingDeposits', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.BankingSeen', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.BankingWithdrawals', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.BannedParty', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.BlockRejectStats', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Checkpoint', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Chunk', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.CollateralAccounts', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.CollateralAssets', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.CurrentPrice', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.DecimalMap', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.DelegationActive', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.DelegationAuto', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.DelegationLastReconciliationTime', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.DelegationPending', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Deposit', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.EpochState', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.EquityShare', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.EquityShareLP', null, global);
-goog.exportSymbol('proto.vega.snapshot.v1.ExecutionIDGenerator', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.EventForwarder', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.ExecutionMarkets', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Format', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.FutureState', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.GovernanceActive', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.GovernanceEnacted', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.GovernanceNode', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LimitState', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityParameters', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityPartiesOrders', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityPendingProvisions', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityPriceProbabilityPair', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityProvisions', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquiditySupplied', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.LiquidityTarget', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Market', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.MarketPositions', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.MatchingBook', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Metadata', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.NetParams', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.NodeHash', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.Notary', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.NotarySigs', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.OracleData', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.OracleDataBatch', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.OracleDataPair', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.PartyProposalVoteCount', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.PartyTokenBalance', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.PastPrice', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Payload', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Payload.DataCase', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PendingAssets', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.PendingKeyRotation', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PendingProposal', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Position', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PriceBound', null, global);
@@ -68,14 +93,28 @@ goog.exportSymbol('proto.vega.snapshot.v1.PriceMonitor', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PriceRange', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PriceRangeCache', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.PriceVolume', null, global);
-goog.exportSymbol('proto.vega.snapshot.v1.RewardPartyAmount', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.RecentBlocksTransactions', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.ReplayProtection', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.Resource', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.RewardsPartyAmount', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.RewardsPayout', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.RewardsPendingPayouts', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.ScheduledRewardsPayout', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.SimpleSpamPolicy', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Snapshot', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.SpamPartyTransactionCount', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.StakeVerifierDeposited', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.StakeVerifierPending', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.StakeVerifierRemoved', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.StakingAccount', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.StakingAccounts', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.TimePrice', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.TimestampedOpenInterest', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.Topology', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.TxRef', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.VoteSpamPolicy', null, global);
 goog.exportSymbol('proto.vega.snapshot.v1.Withdrawal', null, global);
+goog.exportSymbol('proto.vega.snapshot.v1.Witness', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -180,6 +219,216 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.vega.snapshot.v1.Payload.displayName = 'proto.vega.snapshot.v1.Payload';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.TimestampedOpenInterest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.TimestampedOpenInterest.displayName = 'proto.vega.snapshot.v1.TimestampedOpenInterest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityTarget = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquidityTarget.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityTarget, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityTarget.displayName = 'proto.vega.snapshot.v1.LiquidityTarget';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityPriceProbabilityPair, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.displayName = 'proto.vega.snapshot.v1.LiquidityPriceProbabilityPair';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquiditySupplied = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquiditySupplied.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquiditySupplied, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquiditySupplied.displayName = 'proto.vega.snapshot.v1.LiquiditySupplied';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.OracleDataBatch = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.OracleDataBatch.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.OracleDataBatch, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.OracleDataBatch.displayName = 'proto.vega.snapshot.v1.OracleDataBatch';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.OracleData = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.OracleData.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.OracleData, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.OracleData.displayName = 'proto.vega.snapshot.v1.OracleData';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.OracleDataPair = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.OracleDataPair, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.OracleDataPair.displayName = 'proto.vega.snapshot.v1.OracleDataPair';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.Witness = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.Witness.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.Witness, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.Witness.displayName = 'proto.vega.snapshot.v1.Witness';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.Resource = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.Resource.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.Resource, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.Resource.displayName = 'proto.vega.snapshot.v1.Resource';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.EventForwarder = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.EventForwarder.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.EventForwarder, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.EventForwarder.displayName = 'proto.vega.snapshot.v1.EventForwarder';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -453,6 +702,27 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.vega.snapshot.v1.Checkpoint.displayName = 'proto.vega.snapshot.v1.Checkpoint';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.DelegationLastReconciliationTime, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.DelegationLastReconciliationTime.displayName = 'proto.vega.snapshot.v1.DelegationLastReconciliationTime';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -821,6 +1091,48 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.vega.snapshot.v1.CurrentPrice = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.CurrentPrice, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.CurrentPrice.displayName = 'proto.vega.snapshot.v1.CurrentPrice';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.PastPrice = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.PastPrice, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.PastPrice.displayName = 'proto.vega.snapshot.v1.PastPrice';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.vega.snapshot.v1.PriceMonitor = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.PriceMonitor.repeatedFields_, null);
 };
@@ -1031,27 +1343,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.vega.snapshot.v1.ExecutionIDGenerator = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.vega.snapshot.v1.ExecutionIDGenerator, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.vega.snapshot.v1.ExecutionIDGenerator.displayName = 'proto.vega.snapshot.v1.ExecutionIDGenerator';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.vega.snapshot.v1.RewardsPendingPayouts = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.RewardsPendingPayouts.repeatedFields_, null);
 };
@@ -1073,16 +1364,541 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.vega.snapshot.v1.RewardPartyAmount = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+proto.vega.snapshot.v1.ScheduledRewardsPayout = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.ScheduledRewardsPayout.repeatedFields_, null);
 };
-goog.inherits(proto.vega.snapshot.v1.RewardPartyAmount, jspb.Message);
+goog.inherits(proto.vega.snapshot.v1.ScheduledRewardsPayout, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.vega.snapshot.v1.RewardPartyAmount.displayName = 'proto.vega.snapshot.v1.RewardPartyAmount';
+  proto.vega.snapshot.v1.ScheduledRewardsPayout.displayName = 'proto.vega.snapshot.v1.ScheduledRewardsPayout';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.RewardsPayout = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.RewardsPayout.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.RewardsPayout, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.RewardsPayout.displayName = 'proto.vega.snapshot.v1.RewardsPayout';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.RewardsPartyAmount = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.RewardsPartyAmount, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.RewardsPartyAmount.displayName = 'proto.vega.snapshot.v1.RewardsPartyAmount';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LimitState = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LimitState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LimitState.displayName = 'proto.vega.snapshot.v1.LimitState';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.VoteSpamPolicy.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.VoteSpamPolicy, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.VoteSpamPolicy.displayName = 'proto.vega.snapshot.v1.VoteSpamPolicy';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.PartyProposalVoteCount, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.PartyProposalVoteCount.displayName = 'proto.vega.snapshot.v1.PartyProposalVoteCount';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.BannedParty = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.BannedParty, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.BannedParty.displayName = 'proto.vega.snapshot.v1.BannedParty';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.PartyTokenBalance = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.PartyTokenBalance, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.PartyTokenBalance.displayName = 'proto.vega.snapshot.v1.PartyTokenBalance';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.BlockRejectStats = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.BlockRejectStats, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.BlockRejectStats.displayName = 'proto.vega.snapshot.v1.BlockRejectStats';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.SpamPartyTransactionCount, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.SpamPartyTransactionCount.displayName = 'proto.vega.snapshot.v1.SpamPartyTransactionCount';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.SimpleSpamPolicy.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.SimpleSpamPolicy, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.SimpleSpamPolicy.displayName = 'proto.vega.snapshot.v1.SimpleSpamPolicy';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.NotarySigs = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.NotarySigs, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.NotarySigs.displayName = 'proto.vega.snapshot.v1.NotarySigs';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.Notary = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.Notary.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.Notary, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.Notary.displayName = 'proto.vega.snapshot.v1.Notary';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.ReplayProtection = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.ReplayProtection.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.ReplayProtection, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.ReplayProtection.displayName = 'proto.vega.snapshot.v1.ReplayProtection';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.RecentBlocksTransactions.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.RecentBlocksTransactions, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.RecentBlocksTransactions.displayName = 'proto.vega.snapshot.v1.RecentBlocksTransactions';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.FutureState = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.FutureState, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.FutureState.displayName = 'proto.vega.snapshot.v1.FutureState';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.StakeVerifierDeposited.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.StakeVerifierDeposited, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.StakeVerifierDeposited.displayName = 'proto.vega.snapshot.v1.StakeVerifierDeposited';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.StakeVerifierRemoved.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.StakeVerifierRemoved, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.StakeVerifierRemoved.displayName = 'proto.vega.snapshot.v1.StakeVerifierRemoved';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.StakeVerifierPending = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.StakeVerifierPending, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.StakeVerifierPending.displayName = 'proto.vega.snapshot.v1.StakeVerifierPending';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.PendingKeyRotation = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.PendingKeyRotation, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.PendingKeyRotation.displayName = 'proto.vega.snapshot.v1.PendingKeyRotation';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.Topology = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.Topology.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.Topology, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.Topology.displayName = 'proto.vega.snapshot.v1.Topology';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityParameters = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityParameters, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityParameters.displayName = 'proto.vega.snapshot.v1.LiquidityParameters';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquidityPendingProvisions.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityPendingProvisions, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityPendingProvisions.displayName = 'proto.vega.snapshot.v1.LiquidityPendingProvisions';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.displayName = 'proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquidityPartiesOrders.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityPartiesOrders, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityPartiesOrders.displayName = 'proto.vega.snapshot.v1.LiquidityPartiesOrders';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.vega.snapshot.v1.LiquidityProvisions = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.vega.snapshot.v1.LiquidityProvisions.repeatedFields_, null);
+};
+goog.inherits(proto.vega.snapshot.v1.LiquidityProvisions, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.vega.snapshot.v1.LiquidityProvisions.displayName = 'proto.vega.snapshot.v1.LiquidityProvisions';
 }
 
 
@@ -2070,7 +2886,7 @@ proto.vega.snapshot.v1.Chunk.prototype.setOf = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.vega.snapshot.v1.Payload.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]];
+proto.vega.snapshot.v1.Payload.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]];
 
 /**
  * @enum {number}
@@ -2098,9 +2914,28 @@ proto.vega.snapshot.v1.Payload.DataCase = {
   MARKET_POSITIONS: 19,
   APP_STATE: 20,
   EPOCH: 21,
-  EXECUTION_ID_GENERATOR: 22,
   REWARDS_PENDING_PAYOUTS: 23,
-  GOVERNANCE_NODE: 24
+  GOVERNANCE_NODE: 24,
+  LIMIT_STATE: 25,
+  VOTE_SPAM_POLICY: 26,
+  SIMPLE_SPAM_POLICY: 27,
+  NOTARY: 28,
+  REPLAY_PROTECTION: 29,
+  FUTURE_STATE: 30,
+  EVENT_FORWARDER: 31,
+  STAKE_VERIFIER_DEPOSITED: 32,
+  STAKE_VERIFIER_REMOVED: 33,
+  WITNESS: 34,
+  DELEGATION_LAST_RECONCILIATION_TIME: 35,
+  TOPOLOGY: 36,
+  ORACLE_DATA: 37,
+  LIQUIDITY_PARAMETERS: 38,
+  LIQUIDITY_PENDING_PROVISIONS: 39,
+  LIQUIDITY_PARTIES_LIQUIDITY_ORDERS: 40,
+  LIQUIDITY_PARTIES_ORDERS: 41,
+  LIQUIDITY_PROVISIONS: 42,
+  LIQUIDITY_SUPPLIED: 43,
+  LIQUIDITY_TARGET: 44
 };
 
 /**
@@ -2162,9 +2997,28 @@ proto.vega.snapshot.v1.Payload.toObject = function(includeInstance, msg) {
     marketPositions: (f = msg.getMarketPositions()) && proto.vega.snapshot.v1.MarketPositions.toObject(includeInstance, f),
     appState: (f = msg.getAppState()) && proto.vega.snapshot.v1.AppState.toObject(includeInstance, f),
     epoch: (f = msg.getEpoch()) && proto.vega.snapshot.v1.EpochState.toObject(includeInstance, f),
-    executionIdGenerator: (f = msg.getExecutionIdGenerator()) && proto.vega.snapshot.v1.ExecutionIDGenerator.toObject(includeInstance, f),
     rewardsPendingPayouts: (f = msg.getRewardsPendingPayouts()) && proto.vega.snapshot.v1.RewardsPendingPayouts.toObject(includeInstance, f),
-    governanceNode: (f = msg.getGovernanceNode()) && proto.vega.snapshot.v1.GovernanceNode.toObject(includeInstance, f)
+    governanceNode: (f = msg.getGovernanceNode()) && proto.vega.snapshot.v1.GovernanceNode.toObject(includeInstance, f),
+    limitState: (f = msg.getLimitState()) && proto.vega.snapshot.v1.LimitState.toObject(includeInstance, f),
+    voteSpamPolicy: (f = msg.getVoteSpamPolicy()) && proto.vega.snapshot.v1.VoteSpamPolicy.toObject(includeInstance, f),
+    simpleSpamPolicy: (f = msg.getSimpleSpamPolicy()) && proto.vega.snapshot.v1.SimpleSpamPolicy.toObject(includeInstance, f),
+    notary: (f = msg.getNotary()) && proto.vega.snapshot.v1.Notary.toObject(includeInstance, f),
+    replayProtection: (f = msg.getReplayProtection()) && proto.vega.snapshot.v1.ReplayProtection.toObject(includeInstance, f),
+    futureState: (f = msg.getFutureState()) && proto.vega.snapshot.v1.FutureState.toObject(includeInstance, f),
+    eventForwarder: (f = msg.getEventForwarder()) && proto.vega.snapshot.v1.EventForwarder.toObject(includeInstance, f),
+    stakeVerifierDeposited: (f = msg.getStakeVerifierDeposited()) && proto.vega.snapshot.v1.StakeVerifierDeposited.toObject(includeInstance, f),
+    stakeVerifierRemoved: (f = msg.getStakeVerifierRemoved()) && proto.vega.snapshot.v1.StakeVerifierRemoved.toObject(includeInstance, f),
+    witness: (f = msg.getWitness()) && proto.vega.snapshot.v1.Witness.toObject(includeInstance, f),
+    delegationLastReconciliationTime: (f = msg.getDelegationLastReconciliationTime()) && proto.vega.snapshot.v1.DelegationLastReconciliationTime.toObject(includeInstance, f),
+    topology: (f = msg.getTopology()) && proto.vega.snapshot.v1.Topology.toObject(includeInstance, f),
+    oracleData: (f = msg.getOracleData()) && proto.vega.snapshot.v1.OracleDataBatch.toObject(includeInstance, f),
+    liquidityParameters: (f = msg.getLiquidityParameters()) && proto.vega.snapshot.v1.LiquidityParameters.toObject(includeInstance, f),
+    liquidityPendingProvisions: (f = msg.getLiquidityPendingProvisions()) && proto.vega.snapshot.v1.LiquidityPendingProvisions.toObject(includeInstance, f),
+    liquidityPartiesLiquidityOrders: (f = msg.getLiquidityPartiesLiquidityOrders()) && proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.toObject(includeInstance, f),
+    liquidityPartiesOrders: (f = msg.getLiquidityPartiesOrders()) && proto.vega.snapshot.v1.LiquidityPartiesOrders.toObject(includeInstance, f),
+    liquidityProvisions: (f = msg.getLiquidityProvisions()) && proto.vega.snapshot.v1.LiquidityProvisions.toObject(includeInstance, f),
+    liquiditySupplied: (f = msg.getLiquiditySupplied()) && proto.vega.snapshot.v1.LiquiditySupplied.toObject(includeInstance, f),
+    liquidityTarget: (f = msg.getLiquidityTarget()) && proto.vega.snapshot.v1.LiquidityTarget.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2306,11 +3160,6 @@ proto.vega.snapshot.v1.Payload.deserializeBinaryFromReader = function(msg, reade
       reader.readMessage(value,proto.vega.snapshot.v1.EpochState.deserializeBinaryFromReader);
       msg.setEpoch(value);
       break;
-    case 22:
-      var value = new proto.vega.snapshot.v1.ExecutionIDGenerator;
-      reader.readMessage(value,proto.vega.snapshot.v1.ExecutionIDGenerator.deserializeBinaryFromReader);
-      msg.setExecutionIdGenerator(value);
-      break;
     case 23:
       var value = new proto.vega.snapshot.v1.RewardsPendingPayouts;
       reader.readMessage(value,proto.vega.snapshot.v1.RewardsPendingPayouts.deserializeBinaryFromReader);
@@ -2320,6 +3169,106 @@ proto.vega.snapshot.v1.Payload.deserializeBinaryFromReader = function(msg, reade
       var value = new proto.vega.snapshot.v1.GovernanceNode;
       reader.readMessage(value,proto.vega.snapshot.v1.GovernanceNode.deserializeBinaryFromReader);
       msg.setGovernanceNode(value);
+      break;
+    case 25:
+      var value = new proto.vega.snapshot.v1.LimitState;
+      reader.readMessage(value,proto.vega.snapshot.v1.LimitState.deserializeBinaryFromReader);
+      msg.setLimitState(value);
+      break;
+    case 26:
+      var value = new proto.vega.snapshot.v1.VoteSpamPolicy;
+      reader.readMessage(value,proto.vega.snapshot.v1.VoteSpamPolicy.deserializeBinaryFromReader);
+      msg.setVoteSpamPolicy(value);
+      break;
+    case 27:
+      var value = new proto.vega.snapshot.v1.SimpleSpamPolicy;
+      reader.readMessage(value,proto.vega.snapshot.v1.SimpleSpamPolicy.deserializeBinaryFromReader);
+      msg.setSimpleSpamPolicy(value);
+      break;
+    case 28:
+      var value = new proto.vega.snapshot.v1.Notary;
+      reader.readMessage(value,proto.vega.snapshot.v1.Notary.deserializeBinaryFromReader);
+      msg.setNotary(value);
+      break;
+    case 29:
+      var value = new proto.vega.snapshot.v1.ReplayProtection;
+      reader.readMessage(value,proto.vega.snapshot.v1.ReplayProtection.deserializeBinaryFromReader);
+      msg.setReplayProtection(value);
+      break;
+    case 30:
+      var value = new proto.vega.snapshot.v1.FutureState;
+      reader.readMessage(value,proto.vega.snapshot.v1.FutureState.deserializeBinaryFromReader);
+      msg.setFutureState(value);
+      break;
+    case 31:
+      var value = new proto.vega.snapshot.v1.EventForwarder;
+      reader.readMessage(value,proto.vega.snapshot.v1.EventForwarder.deserializeBinaryFromReader);
+      msg.setEventForwarder(value);
+      break;
+    case 32:
+      var value = new proto.vega.snapshot.v1.StakeVerifierDeposited;
+      reader.readMessage(value,proto.vega.snapshot.v1.StakeVerifierDeposited.deserializeBinaryFromReader);
+      msg.setStakeVerifierDeposited(value);
+      break;
+    case 33:
+      var value = new proto.vega.snapshot.v1.StakeVerifierRemoved;
+      reader.readMessage(value,proto.vega.snapshot.v1.StakeVerifierRemoved.deserializeBinaryFromReader);
+      msg.setStakeVerifierRemoved(value);
+      break;
+    case 34:
+      var value = new proto.vega.snapshot.v1.Witness;
+      reader.readMessage(value,proto.vega.snapshot.v1.Witness.deserializeBinaryFromReader);
+      msg.setWitness(value);
+      break;
+    case 35:
+      var value = new proto.vega.snapshot.v1.DelegationLastReconciliationTime;
+      reader.readMessage(value,proto.vega.snapshot.v1.DelegationLastReconciliationTime.deserializeBinaryFromReader);
+      msg.setDelegationLastReconciliationTime(value);
+      break;
+    case 36:
+      var value = new proto.vega.snapshot.v1.Topology;
+      reader.readMessage(value,proto.vega.snapshot.v1.Topology.deserializeBinaryFromReader);
+      msg.setTopology(value);
+      break;
+    case 37:
+      var value = new proto.vega.snapshot.v1.OracleDataBatch;
+      reader.readMessage(value,proto.vega.snapshot.v1.OracleDataBatch.deserializeBinaryFromReader);
+      msg.setOracleData(value);
+      break;
+    case 38:
+      var value = new proto.vega.snapshot.v1.LiquidityParameters;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityParameters.deserializeBinaryFromReader);
+      msg.setLiquidityParameters(value);
+      break;
+    case 39:
+      var value = new proto.vega.snapshot.v1.LiquidityPendingProvisions;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityPendingProvisions.deserializeBinaryFromReader);
+      msg.setLiquidityPendingProvisions(value);
+      break;
+    case 40:
+      var value = new proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.deserializeBinaryFromReader);
+      msg.setLiquidityPartiesLiquidityOrders(value);
+      break;
+    case 41:
+      var value = new proto.vega.snapshot.v1.LiquidityPartiesOrders;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityPartiesOrders.deserializeBinaryFromReader);
+      msg.setLiquidityPartiesOrders(value);
+      break;
+    case 42:
+      var value = new proto.vega.snapshot.v1.LiquidityProvisions;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityProvisions.deserializeBinaryFromReader);
+      msg.setLiquidityProvisions(value);
+      break;
+    case 43:
+      var value = new proto.vega.snapshot.v1.LiquiditySupplied;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquiditySupplied.deserializeBinaryFromReader);
+      msg.setLiquiditySupplied(value);
+      break;
+    case 44:
+      var value = new proto.vega.snapshot.v1.LiquidityTarget;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityTarget.deserializeBinaryFromReader);
+      msg.setLiquidityTarget(value);
       break;
     default:
       reader.skipField();
@@ -2518,14 +3467,6 @@ proto.vega.snapshot.v1.Payload.serializeBinaryToWriter = function(message, write
       proto.vega.snapshot.v1.EpochState.serializeBinaryToWriter
     );
   }
-  f = message.getExecutionIdGenerator();
-  if (f != null) {
-    writer.writeMessage(
-      22,
-      f,
-      proto.vega.snapshot.v1.ExecutionIDGenerator.serializeBinaryToWriter
-    );
-  }
   f = message.getRewardsPendingPayouts();
   if (f != null) {
     writer.writeMessage(
@@ -2540,6 +3481,166 @@ proto.vega.snapshot.v1.Payload.serializeBinaryToWriter = function(message, write
       24,
       f,
       proto.vega.snapshot.v1.GovernanceNode.serializeBinaryToWriter
+    );
+  }
+  f = message.getLimitState();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      proto.vega.snapshot.v1.LimitState.serializeBinaryToWriter
+    );
+  }
+  f = message.getVoteSpamPolicy();
+  if (f != null) {
+    writer.writeMessage(
+      26,
+      f,
+      proto.vega.snapshot.v1.VoteSpamPolicy.serializeBinaryToWriter
+    );
+  }
+  f = message.getSimpleSpamPolicy();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      proto.vega.snapshot.v1.SimpleSpamPolicy.serializeBinaryToWriter
+    );
+  }
+  f = message.getNotary();
+  if (f != null) {
+    writer.writeMessage(
+      28,
+      f,
+      proto.vega.snapshot.v1.Notary.serializeBinaryToWriter
+    );
+  }
+  f = message.getReplayProtection();
+  if (f != null) {
+    writer.writeMessage(
+      29,
+      f,
+      proto.vega.snapshot.v1.ReplayProtection.serializeBinaryToWriter
+    );
+  }
+  f = message.getFutureState();
+  if (f != null) {
+    writer.writeMessage(
+      30,
+      f,
+      proto.vega.snapshot.v1.FutureState.serializeBinaryToWriter
+    );
+  }
+  f = message.getEventForwarder();
+  if (f != null) {
+    writer.writeMessage(
+      31,
+      f,
+      proto.vega.snapshot.v1.EventForwarder.serializeBinaryToWriter
+    );
+  }
+  f = message.getStakeVerifierDeposited();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      proto.vega.snapshot.v1.StakeVerifierDeposited.serializeBinaryToWriter
+    );
+  }
+  f = message.getStakeVerifierRemoved();
+  if (f != null) {
+    writer.writeMessage(
+      33,
+      f,
+      proto.vega.snapshot.v1.StakeVerifierRemoved.serializeBinaryToWriter
+    );
+  }
+  f = message.getWitness();
+  if (f != null) {
+    writer.writeMessage(
+      34,
+      f,
+      proto.vega.snapshot.v1.Witness.serializeBinaryToWriter
+    );
+  }
+  f = message.getDelegationLastReconciliationTime();
+  if (f != null) {
+    writer.writeMessage(
+      35,
+      f,
+      proto.vega.snapshot.v1.DelegationLastReconciliationTime.serializeBinaryToWriter
+    );
+  }
+  f = message.getTopology();
+  if (f != null) {
+    writer.writeMessage(
+      36,
+      f,
+      proto.vega.snapshot.v1.Topology.serializeBinaryToWriter
+    );
+  }
+  f = message.getOracleData();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      proto.vega.snapshot.v1.OracleDataBatch.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityParameters();
+  if (f != null) {
+    writer.writeMessage(
+      38,
+      f,
+      proto.vega.snapshot.v1.LiquidityParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityPendingProvisions();
+  if (f != null) {
+    writer.writeMessage(
+      39,
+      f,
+      proto.vega.snapshot.v1.LiquidityPendingProvisions.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityPartiesLiquidityOrders();
+  if (f != null) {
+    writer.writeMessage(
+      40,
+      f,
+      proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityPartiesOrders();
+  if (f != null) {
+    writer.writeMessage(
+      41,
+      f,
+      proto.vega.snapshot.v1.LiquidityPartiesOrders.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityProvisions();
+  if (f != null) {
+    writer.writeMessage(
+      42,
+      f,
+      proto.vega.snapshot.v1.LiquidityProvisions.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquiditySupplied();
+  if (f != null) {
+    writer.writeMessage(
+      43,
+      f,
+      proto.vega.snapshot.v1.LiquiditySupplied.serializeBinaryToWriter
+    );
+  }
+  f = message.getLiquidityTarget();
+  if (f != null) {
+    writer.writeMessage(
+      44,
+      f,
+      proto.vega.snapshot.v1.LiquidityTarget.serializeBinaryToWriter
     );
   }
 };
@@ -3323,43 +4424,6 @@ proto.vega.snapshot.v1.Payload.prototype.hasEpoch = function() {
 
 
 /**
- * optional ExecutionIDGenerator execution_id_generator = 22;
- * @return {?proto.vega.snapshot.v1.ExecutionIDGenerator}
- */
-proto.vega.snapshot.v1.Payload.prototype.getExecutionIdGenerator = function() {
-  return /** @type{?proto.vega.snapshot.v1.ExecutionIDGenerator} */ (
-    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.ExecutionIDGenerator, 22));
-};
-
-
-/**
- * @param {?proto.vega.snapshot.v1.ExecutionIDGenerator|undefined} value
- * @return {!proto.vega.snapshot.v1.Payload} returns this
-*/
-proto.vega.snapshot.v1.Payload.prototype.setExecutionIdGenerator = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 22, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.vega.snapshot.v1.Payload} returns this
- */
-proto.vega.snapshot.v1.Payload.prototype.clearExecutionIdGenerator = function() {
-  return this.setExecutionIdGenerator(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.vega.snapshot.v1.Payload.prototype.hasExecutionIdGenerator = function() {
-  return jspb.Message.getField(this, 22) != null;
-};
-
-
-/**
  * optional RewardsPendingPayouts rewards_pending_payouts = 23;
  * @return {?proto.vega.snapshot.v1.RewardsPendingPayouts}
  */
@@ -3430,6 +4494,2865 @@ proto.vega.snapshot.v1.Payload.prototype.clearGovernanceNode = function() {
  */
 proto.vega.snapshot.v1.Payload.prototype.hasGovernanceNode = function() {
   return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional LimitState limit_state = 25;
+ * @return {?proto.vega.snapshot.v1.LimitState}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLimitState = function() {
+  return /** @type{?proto.vega.snapshot.v1.LimitState} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LimitState, 25));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LimitState|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLimitState = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 25, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLimitState = function() {
+  return this.setLimitState(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLimitState = function() {
+  return jspb.Message.getField(this, 25) != null;
+};
+
+
+/**
+ * optional VoteSpamPolicy vote_spam_policy = 26;
+ * @return {?proto.vega.snapshot.v1.VoteSpamPolicy}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getVoteSpamPolicy = function() {
+  return /** @type{?proto.vega.snapshot.v1.VoteSpamPolicy} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.VoteSpamPolicy, 26));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.VoteSpamPolicy|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setVoteSpamPolicy = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 26, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearVoteSpamPolicy = function() {
+  return this.setVoteSpamPolicy(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasVoteSpamPolicy = function() {
+  return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional SimpleSpamPolicy simple_spam_policy = 27;
+ * @return {?proto.vega.snapshot.v1.SimpleSpamPolicy}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getSimpleSpamPolicy = function() {
+  return /** @type{?proto.vega.snapshot.v1.SimpleSpamPolicy} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.SimpleSpamPolicy, 27));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.SimpleSpamPolicy|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setSimpleSpamPolicy = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 27, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearSimpleSpamPolicy = function() {
+  return this.setSimpleSpamPolicy(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasSimpleSpamPolicy = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+
+/**
+ * optional Notary notary = 28;
+ * @return {?proto.vega.snapshot.v1.Notary}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getNotary = function() {
+  return /** @type{?proto.vega.snapshot.v1.Notary} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.Notary, 28));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.Notary|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setNotary = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 28, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearNotary = function() {
+  return this.setNotary(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasNotary = function() {
+  return jspb.Message.getField(this, 28) != null;
+};
+
+
+/**
+ * optional ReplayProtection replay_protection = 29;
+ * @return {?proto.vega.snapshot.v1.ReplayProtection}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getReplayProtection = function() {
+  return /** @type{?proto.vega.snapshot.v1.ReplayProtection} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.ReplayProtection, 29));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.ReplayProtection|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setReplayProtection = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 29, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearReplayProtection = function() {
+  return this.setReplayProtection(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasReplayProtection = function() {
+  return jspb.Message.getField(this, 29) != null;
+};
+
+
+/**
+ * optional FutureState future_state = 30;
+ * @return {?proto.vega.snapshot.v1.FutureState}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getFutureState = function() {
+  return /** @type{?proto.vega.snapshot.v1.FutureState} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.FutureState, 30));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.FutureState|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setFutureState = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 30, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearFutureState = function() {
+  return this.setFutureState(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasFutureState = function() {
+  return jspb.Message.getField(this, 30) != null;
+};
+
+
+/**
+ * optional EventForwarder event_forwarder = 31;
+ * @return {?proto.vega.snapshot.v1.EventForwarder}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getEventForwarder = function() {
+  return /** @type{?proto.vega.snapshot.v1.EventForwarder} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.EventForwarder, 31));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.EventForwarder|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setEventForwarder = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 31, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearEventForwarder = function() {
+  return this.setEventForwarder(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasEventForwarder = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional StakeVerifierDeposited stake_verifier_deposited = 32;
+ * @return {?proto.vega.snapshot.v1.StakeVerifierDeposited}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getStakeVerifierDeposited = function() {
+  return /** @type{?proto.vega.snapshot.v1.StakeVerifierDeposited} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.StakeVerifierDeposited, 32));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.StakeVerifierDeposited|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setStakeVerifierDeposited = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 32, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearStakeVerifierDeposited = function() {
+  return this.setStakeVerifierDeposited(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasStakeVerifierDeposited = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
+/**
+ * optional StakeVerifierRemoved stake_verifier_removed = 33;
+ * @return {?proto.vega.snapshot.v1.StakeVerifierRemoved}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getStakeVerifierRemoved = function() {
+  return /** @type{?proto.vega.snapshot.v1.StakeVerifierRemoved} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.StakeVerifierRemoved, 33));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.StakeVerifierRemoved|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setStakeVerifierRemoved = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 33, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearStakeVerifierRemoved = function() {
+  return this.setStakeVerifierRemoved(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasStakeVerifierRemoved = function() {
+  return jspb.Message.getField(this, 33) != null;
+};
+
+
+/**
+ * optional Witness witness = 34;
+ * @return {?proto.vega.snapshot.v1.Witness}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getWitness = function() {
+  return /** @type{?proto.vega.snapshot.v1.Witness} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.Witness, 34));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.Witness|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setWitness = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 34, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearWitness = function() {
+  return this.setWitness(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasWitness = function() {
+  return jspb.Message.getField(this, 34) != null;
+};
+
+
+/**
+ * optional DelegationLastReconciliationTime delegation_last_reconciliation_time = 35;
+ * @return {?proto.vega.snapshot.v1.DelegationLastReconciliationTime}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getDelegationLastReconciliationTime = function() {
+  return /** @type{?proto.vega.snapshot.v1.DelegationLastReconciliationTime} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.DelegationLastReconciliationTime, 35));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.DelegationLastReconciliationTime|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setDelegationLastReconciliationTime = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 35, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearDelegationLastReconciliationTime = function() {
+  return this.setDelegationLastReconciliationTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasDelegationLastReconciliationTime = function() {
+  return jspb.Message.getField(this, 35) != null;
+};
+
+
+/**
+ * optional Topology topology = 36;
+ * @return {?proto.vega.snapshot.v1.Topology}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getTopology = function() {
+  return /** @type{?proto.vega.snapshot.v1.Topology} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.Topology, 36));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.Topology|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setTopology = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 36, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearTopology = function() {
+  return this.setTopology(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasTopology = function() {
+  return jspb.Message.getField(this, 36) != null;
+};
+
+
+/**
+ * optional OracleDataBatch oracle_data = 37;
+ * @return {?proto.vega.snapshot.v1.OracleDataBatch}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getOracleData = function() {
+  return /** @type{?proto.vega.snapshot.v1.OracleDataBatch} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.OracleDataBatch, 37));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.OracleDataBatch|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setOracleData = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 37, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearOracleData = function() {
+  return this.setOracleData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasOracleData = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * optional LiquidityParameters liquidity_parameters = 38;
+ * @return {?proto.vega.snapshot.v1.LiquidityParameters}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityParameters = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityParameters} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityParameters, 38));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityParameters|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityParameters = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 38, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityParameters = function() {
+  return this.setLiquidityParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityParameters = function() {
+  return jspb.Message.getField(this, 38) != null;
+};
+
+
+/**
+ * optional LiquidityPendingProvisions liquidity_pending_provisions = 39;
+ * @return {?proto.vega.snapshot.v1.LiquidityPendingProvisions}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityPendingProvisions = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityPendingProvisions} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityPendingProvisions, 39));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityPendingProvisions|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityPendingProvisions = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 39, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityPendingProvisions = function() {
+  return this.setLiquidityPendingProvisions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityPendingProvisions = function() {
+  return jspb.Message.getField(this, 39) != null;
+};
+
+
+/**
+ * optional LiquidityPartiesLiquidityOrders liquidity_parties_liquidity_orders = 40;
+ * @return {?proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityPartiesLiquidityOrders = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders, 40));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityPartiesLiquidityOrders = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 40, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityPartiesLiquidityOrders = function() {
+  return this.setLiquidityPartiesLiquidityOrders(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityPartiesLiquidityOrders = function() {
+  return jspb.Message.getField(this, 40) != null;
+};
+
+
+/**
+ * optional LiquidityPartiesOrders liquidity_parties_orders = 41;
+ * @return {?proto.vega.snapshot.v1.LiquidityPartiesOrders}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityPartiesOrders = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityPartiesOrders} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityPartiesOrders, 41));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityPartiesOrders|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityPartiesOrders = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 41, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityPartiesOrders = function() {
+  return this.setLiquidityPartiesOrders(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityPartiesOrders = function() {
+  return jspb.Message.getField(this, 41) != null;
+};
+
+
+/**
+ * optional LiquidityProvisions liquidity_provisions = 42;
+ * @return {?proto.vega.snapshot.v1.LiquidityProvisions}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityProvisions = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityProvisions} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityProvisions, 42));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityProvisions|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityProvisions = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 42, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityProvisions = function() {
+  return this.setLiquidityProvisions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityProvisions = function() {
+  return jspb.Message.getField(this, 42) != null;
+};
+
+
+/**
+ * optional LiquiditySupplied liquidity_supplied = 43;
+ * @return {?proto.vega.snapshot.v1.LiquiditySupplied}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquiditySupplied = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquiditySupplied} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquiditySupplied, 43));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquiditySupplied|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquiditySupplied = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 43, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquiditySupplied = function() {
+  return this.setLiquiditySupplied(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquiditySupplied = function() {
+  return jspb.Message.getField(this, 43) != null;
+};
+
+
+/**
+ * optional LiquidityTarget liquidity_target = 44;
+ * @return {?proto.vega.snapshot.v1.LiquidityTarget}
+ */
+proto.vega.snapshot.v1.Payload.prototype.getLiquidityTarget = function() {
+  return /** @type{?proto.vega.snapshot.v1.LiquidityTarget} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.LiquidityTarget, 44));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.LiquidityTarget|undefined} value
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+*/
+proto.vega.snapshot.v1.Payload.prototype.setLiquidityTarget = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 44, proto.vega.snapshot.v1.Payload.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.Payload} returns this
+ */
+proto.vega.snapshot.v1.Payload.prototype.clearLiquidityTarget = function() {
+  return this.setLiquidityTarget(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.Payload.prototype.hasLiquidityTarget = function() {
+  return jspb.Message.getField(this, 44) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.TimestampedOpenInterest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.TimestampedOpenInterest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    openInterest: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    time: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.TimestampedOpenInterest}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.TimestampedOpenInterest;
+  return proto.vega.snapshot.v1.TimestampedOpenInterest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.TimestampedOpenInterest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.TimestampedOpenInterest}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setOpenInterest(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.TimestampedOpenInterest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.TimestampedOpenInterest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOpenInterest();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 open_interest = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.getOpenInterest = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.TimestampedOpenInterest} returns this
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.setOpenInterest = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional int64 time = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.getTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.TimestampedOpenInterest} returns this
+ */
+proto.vega.snapshot.v1.TimestampedOpenInterest.prototype.setTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquidityTarget.repeatedFields_ = [4,5];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityTarget.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityTarget} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityTarget.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    marketId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    currentTime: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    scheduledTruncate: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    currentOpenInterestsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    previousOpenInterestsList: jspb.Message.toObjectList(msg.getPreviousOpenInterestsList(),
+    proto.vega.snapshot.v1.TimestampedOpenInterest.toObject, includeInstance),
+    maxOpenInterests: (f = msg.getMaxOpenInterests()) && proto.vega.snapshot.v1.TimestampedOpenInterest.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityTarget;
+  return proto.vega.snapshot.v1.LiquidityTarget.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityTarget} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCurrentTime(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setScheduledTruncate(value);
+      break;
+    case 4:
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedUint64() : [reader.readUint64()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addCurrentOpenInterests(values[i]);
+      }
+      break;
+    case 5:
+      var value = new proto.vega.snapshot.v1.TimestampedOpenInterest;
+      reader.readMessage(value,proto.vega.snapshot.v1.TimestampedOpenInterest.deserializeBinaryFromReader);
+      msg.addPreviousOpenInterests(value);
+      break;
+    case 6:
+      var value = new proto.vega.snapshot.v1.TimestampedOpenInterest;
+      reader.readMessage(value,proto.vega.snapshot.v1.TimestampedOpenInterest.deserializeBinaryFromReader);
+      msg.setMaxOpenInterests(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityTarget.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityTarget} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityTarget.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCurrentTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getScheduledTruncate();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getCurrentOpenInterestsList();
+  if (f.length > 0) {
+    writer.writePackedUint64(
+      4,
+      f
+    );
+  }
+  f = message.getPreviousOpenInterestsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      proto.vega.snapshot.v1.TimestampedOpenInterest.serializeBinaryToWriter
+    );
+  }
+  f = message.getMaxOpenInterests();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.vega.snapshot.v1.TimestampedOpenInterest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string market_id = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int64 current_time = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getCurrentTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setCurrentTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int64 scheduled_truncate = 3;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getScheduledTruncate = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setScheduledTruncate = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * repeated uint64 current_open_interests = 4;
+ * @return {!Array<number>}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getCurrentOpenInterestsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setCurrentOpenInterestsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.addCurrentOpenInterests = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.clearCurrentOpenInterestsList = function() {
+  return this.setCurrentOpenInterestsList([]);
+};
+
+
+/**
+ * repeated TimestampedOpenInterest previous_open_interests = 5;
+ * @return {!Array<!proto.vega.snapshot.v1.TimestampedOpenInterest>}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getPreviousOpenInterestsList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.TimestampedOpenInterest>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.TimestampedOpenInterest, 5));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.TimestampedOpenInterest>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+*/
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setPreviousOpenInterestsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.TimestampedOpenInterest=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.TimestampedOpenInterest}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.addPreviousOpenInterests = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.vega.snapshot.v1.TimestampedOpenInterest, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.clearPreviousOpenInterestsList = function() {
+  return this.setPreviousOpenInterestsList([]);
+};
+
+
+/**
+ * optional TimestampedOpenInterest max_open_interests = 6;
+ * @return {?proto.vega.snapshot.v1.TimestampedOpenInterest}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.getMaxOpenInterests = function() {
+  return /** @type{?proto.vega.snapshot.v1.TimestampedOpenInterest} */ (
+    jspb.Message.getWrapperField(this, proto.vega.snapshot.v1.TimestampedOpenInterest, 6));
+};
+
+
+/**
+ * @param {?proto.vega.snapshot.v1.TimestampedOpenInterest|undefined} value
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+*/
+proto.vega.snapshot.v1.LiquidityTarget.prototype.setMaxOpenInterests = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.snapshot.v1.LiquidityTarget} returns this
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.clearMaxOpenInterests = function() {
+  return this.setMaxOpenInterests(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LiquidityTarget.prototype.hasMaxOpenInterests = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    price: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    probability: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityPriceProbabilityPair;
+  return proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrice(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProbability(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPrice();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getProbability();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string price = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.getPrice = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.setPrice = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string probability = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.getProbability = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.prototype.setProbability = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.repeatedFields_ = [4,5];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquiditySupplied.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquiditySupplied} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    marketId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    cachedMin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    cachedMax: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    bidCacheList: jspb.Message.toObjectList(msg.getBidCacheList(),
+    proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.toObject, includeInstance),
+    askCacheList: jspb.Message.toObjectList(msg.getAskCacheList(),
+    proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquiditySupplied;
+  return proto.vega.snapshot.v1.LiquiditySupplied.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquiditySupplied} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCachedMin(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCachedMax(value);
+      break;
+    case 4:
+      var value = new proto.vega.snapshot.v1.LiquidityPriceProbabilityPair;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.deserializeBinaryFromReader);
+      msg.addBidCache(value);
+      break;
+    case 5:
+      var value = new proto.vega.snapshot.v1.LiquidityPriceProbabilityPair;
+      reader.readMessage(value,proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.deserializeBinaryFromReader);
+      msg.addAskCache(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquiditySupplied.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquiditySupplied} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCachedMin();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getCachedMax();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getBidCacheList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.serializeBinaryToWriter
+    );
+  }
+  f = message.getAskCacheList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      proto.vega.snapshot.v1.LiquidityPriceProbabilityPair.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string market_id = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string cached_min = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.getCachedMin = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.setCachedMin = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string cached_max = 3;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.getCachedMax = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.setCachedMax = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated LiquidityPriceProbabilityPair bid_cache = 4;
+ * @return {!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.getBidCacheList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.LiquidityPriceProbabilityPair, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>} value
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+*/
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.setBidCacheList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.addBidCache = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.vega.snapshot.v1.LiquidityPriceProbabilityPair, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.clearBidCacheList = function() {
+  return this.setBidCacheList([]);
+};
+
+
+/**
+ * repeated LiquidityPriceProbabilityPair ask_cache = 5;
+ * @return {!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.getAskCacheList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.LiquidityPriceProbabilityPair, 5));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair>} value
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+*/
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.setAskCacheList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.LiquidityPriceProbabilityPair}
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.addAskCache = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.vega.snapshot.v1.LiquidityPriceProbabilityPair, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquiditySupplied} returns this
+ */
+proto.vega.snapshot.v1.LiquiditySupplied.prototype.clearAskCacheList = function() {
+  return this.setAskCacheList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.OracleDataBatch.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.OracleDataBatch.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.OracleDataBatch} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleDataBatch.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    oracleDataList: jspb.Message.toObjectList(msg.getOracleDataList(),
+    proto.vega.snapshot.v1.OracleData.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.OracleDataBatch}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.OracleDataBatch;
+  return proto.vega.snapshot.v1.OracleDataBatch.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.OracleDataBatch} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.OracleDataBatch}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.OracleData;
+      reader.readMessage(value,proto.vega.snapshot.v1.OracleData.deserializeBinaryFromReader);
+      msg.addOracleData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.OracleDataBatch.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.OracleDataBatch} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleDataBatch.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOracleDataList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.OracleData.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated OracleData oracle_data = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.OracleData>}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.prototype.getOracleDataList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.OracleData>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.OracleData, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.OracleData>} value
+ * @return {!proto.vega.snapshot.v1.OracleDataBatch} returns this
+*/
+proto.vega.snapshot.v1.OracleDataBatch.prototype.setOracleDataList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.OracleData=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.OracleData}
+ */
+proto.vega.snapshot.v1.OracleDataBatch.prototype.addOracleData = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.OracleData, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.OracleDataBatch} returns this
+ */
+proto.vega.snapshot.v1.OracleDataBatch.prototype.clearOracleDataList = function() {
+  return this.setOracleDataList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.OracleData.repeatedFields_ = [1,2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.OracleData.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.OracleData.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.OracleData} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleData.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pubKeysList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    dataList: jspb.Message.toObjectList(msg.getDataList(),
+    proto.vega.snapshot.v1.OracleDataPair.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.OracleData}
+ */
+proto.vega.snapshot.v1.OracleData.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.OracleData;
+  return proto.vega.snapshot.v1.OracleData.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.OracleData} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.OracleData}
+ */
+proto.vega.snapshot.v1.OracleData.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPubKeys(value);
+      break;
+    case 2:
+      var value = new proto.vega.snapshot.v1.OracleDataPair;
+      reader.readMessage(value,proto.vega.snapshot.v1.OracleDataPair.deserializeBinaryFromReader);
+      msg.addData(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.OracleData.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.OracleData.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.OracleData} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleData.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPubKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+  f = message.getDataList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.vega.snapshot.v1.OracleDataPair.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated string pub_keys = 1;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.OracleData.prototype.getPubKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.OracleData} returns this
+ */
+proto.vega.snapshot.v1.OracleData.prototype.setPubKeysList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.OracleData} returns this
+ */
+proto.vega.snapshot.v1.OracleData.prototype.addPubKeys = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.OracleData} returns this
+ */
+proto.vega.snapshot.v1.OracleData.prototype.clearPubKeysList = function() {
+  return this.setPubKeysList([]);
+};
+
+
+/**
+ * repeated OracleDataPair data = 2;
+ * @return {!Array<!proto.vega.snapshot.v1.OracleDataPair>}
+ */
+proto.vega.snapshot.v1.OracleData.prototype.getDataList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.OracleDataPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.OracleDataPair, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.OracleDataPair>} value
+ * @return {!proto.vega.snapshot.v1.OracleData} returns this
+*/
+proto.vega.snapshot.v1.OracleData.prototype.setDataList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.OracleDataPair=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.OracleDataPair}
+ */
+proto.vega.snapshot.v1.OracleData.prototype.addData = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.vega.snapshot.v1.OracleDataPair, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.OracleData} returns this
+ */
+proto.vega.snapshot.v1.OracleData.prototype.clearDataList = function() {
+  return this.setDataList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.OracleDataPair.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.OracleDataPair} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleDataPair.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.OracleDataPair}
+ */
+proto.vega.snapshot.v1.OracleDataPair.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.OracleDataPair;
+  return proto.vega.snapshot.v1.OracleDataPair.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.OracleDataPair} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.OracleDataPair}
+ */
+proto.vega.snapshot.v1.OracleDataPair.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setValue(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.OracleDataPair.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.OracleDataPair} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.OracleDataPair.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getValue();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string key = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.OracleDataPair} returns this
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.setKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string value = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.getValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.OracleDataPair} returns this
+ */
+proto.vega.snapshot.v1.OracleDataPair.prototype.setValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.Witness.repeatedFields_ = [1,2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.Witness.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.Witness.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.Witness} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Witness.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
+    proto.vega.snapshot.v1.Resource.toObject, includeInstance),
+    needResendResourcesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.Witness}
+ */
+proto.vega.snapshot.v1.Witness.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.Witness;
+  return proto.vega.snapshot.v1.Witness.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.Witness} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.Witness}
+ */
+proto.vega.snapshot.v1.Witness.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.Resource;
+      reader.readMessage(value,proto.vega.snapshot.v1.Resource.deserializeBinaryFromReader);
+      msg.addResources(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addNeedResendResources(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.Witness.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.Witness.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.Witness} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Witness.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.Resource.serializeBinaryToWriter
+    );
+  }
+  f = message.getNeedResendResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated Resource resources = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.Resource>}
+ */
+proto.vega.snapshot.v1.Witness.prototype.getResourcesList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.Resource>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.Resource, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.Resource>} value
+ * @return {!proto.vega.snapshot.v1.Witness} returns this
+*/
+proto.vega.snapshot.v1.Witness.prototype.setResourcesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.Resource=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.Resource}
+ */
+proto.vega.snapshot.v1.Witness.prototype.addResources = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.Resource, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Witness} returns this
+ */
+proto.vega.snapshot.v1.Witness.prototype.clearResourcesList = function() {
+  return this.setResourcesList([]);
+};
+
+
+/**
+ * repeated string need_resend_resources = 2;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.Witness.prototype.getNeedResendResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.Witness} returns this
+ */
+proto.vega.snapshot.v1.Witness.prototype.setNeedResendResourcesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.Witness} returns this
+ */
+proto.vega.snapshot.v1.Witness.prototype.addNeedResendResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Witness} returns this
+ */
+proto.vega.snapshot.v1.Witness.prototype.clearNeedResendResourcesList = function() {
+  return this.setNeedResendResourcesList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.Resource.repeatedFields_ = [3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.Resource.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.Resource.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.Resource} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Resource.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    checkUntil: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    votesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    state: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.Resource}
+ */
+proto.vega.snapshot.v1.Resource.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.Resource;
+  return proto.vega.snapshot.v1.Resource.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.Resource} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.Resource}
+ */
+proto.vega.snapshot.v1.Resource.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCheckUntil(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addVotes(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setState(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.Resource.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.Resource.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.Resource} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Resource.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCheckUntil();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getVotesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+  f = message.getState();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.Resource.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int64 check_until = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.Resource.prototype.getCheckUntil = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.setCheckUntil = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated string votes = 3;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.Resource.prototype.getVotesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.setVotesList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.addVotes = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.clearVotesList = function() {
+  return this.setVotesList([]);
+};
+
+
+/**
+ * optional uint32 state = 4;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.Resource.prototype.getState = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.Resource} returns this
+ */
+proto.vega.snapshot.v1.Resource.prototype.setState = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.EventForwarder.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.EventForwarder.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.EventForwarder.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.EventForwarder} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.EventForwarder.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    ackedEventsList: jspb.Message.toObjectList(msg.getAckedEventsList(),
+    vega_commands_v1_validator_commands_pb.ChainEvent.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.EventForwarder}
+ */
+proto.vega.snapshot.v1.EventForwarder.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.EventForwarder;
+  return proto.vega.snapshot.v1.EventForwarder.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.EventForwarder} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.EventForwarder}
+ */
+proto.vega.snapshot.v1.EventForwarder.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new vega_commands_v1_validator_commands_pb.ChainEvent;
+      reader.readMessage(value,vega_commands_v1_validator_commands_pb.ChainEvent.deserializeBinaryFromReader);
+      msg.addAckedEvents(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.EventForwarder.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.EventForwarder.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.EventForwarder} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.EventForwarder.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAckedEventsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      vega_commands_v1_validator_commands_pb.ChainEvent.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated vega.commands.v1.ChainEvent acked_events = 1;
+ * @return {!Array<!proto.vega.commands.v1.ChainEvent>}
+ */
+proto.vega.snapshot.v1.EventForwarder.prototype.getAckedEventsList = function() {
+  return /** @type{!Array<!proto.vega.commands.v1.ChainEvent>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vega_commands_v1_validator_commands_pb.ChainEvent, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.commands.v1.ChainEvent>} value
+ * @return {!proto.vega.snapshot.v1.EventForwarder} returns this
+*/
+proto.vega.snapshot.v1.EventForwarder.prototype.setAckedEventsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.commands.v1.ChainEvent=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.commands.v1.ChainEvent}
+ */
+proto.vega.snapshot.v1.EventForwarder.prototype.addAckedEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.commands.v1.ChainEvent, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.EventForwarder} returns this
+ */
+proto.vega.snapshot.v1.EventForwarder.prototype.clearAckedEventsList = function() {
+  return this.setAckedEventsList([]);
 };
 
 
@@ -5854,6 +9777,136 @@ proto.vega.snapshot.v1.Checkpoint.prototype.getNextCp = function() {
  * @return {!proto.vega.snapshot.v1.Checkpoint} returns this
  */
 proto.vega.snapshot.v1.Checkpoint.prototype.setNextCp = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.DelegationLastReconciliationTime.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.DelegationLastReconciliationTime} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    lastReconciliationTime: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.DelegationLastReconciliationTime}
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.DelegationLastReconciliationTime;
+  return proto.vega.snapshot.v1.DelegationLastReconciliationTime.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.DelegationLastReconciliationTime} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.DelegationLastReconciliationTime}
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setLastReconciliationTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.DelegationLastReconciliationTime.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.DelegationLastReconciliationTime} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLastReconciliationTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 last_reconciliation_time = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.prototype.getLastReconciliationTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.DelegationLastReconciliationTime} returns this
+ */
+proto.vega.snapshot.v1.DelegationLastReconciliationTime.prototype.setLastReconciliationTime = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -9171,12 +13224,332 @@ proto.vega.snapshot.v1.PriceRangeCache.prototype.hasRange = function() {
 
 
 
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.CurrentPrice.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.CurrentPrice} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.CurrentPrice.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    price: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    volume: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.CurrentPrice}
+ */
+proto.vega.snapshot.v1.CurrentPrice.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.CurrentPrice;
+  return proto.vega.snapshot.v1.CurrentPrice.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.CurrentPrice} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.CurrentPrice}
+ */
+proto.vega.snapshot.v1.CurrentPrice.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrice(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setVolume(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.CurrentPrice.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.CurrentPrice} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.CurrentPrice.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPrice();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getVolume();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string price = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.getPrice = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.CurrentPrice} returns this
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.setPrice = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 volume = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.getVolume = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.CurrentPrice} returns this
+ */
+proto.vega.snapshot.v1.CurrentPrice.prototype.setVolume = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.PastPrice.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.PastPrice} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PastPrice.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    time: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    volumeWeightedPrice: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.PastPrice}
+ */
+proto.vega.snapshot.v1.PastPrice.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.PastPrice;
+  return proto.vega.snapshot.v1.PastPrice.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.PastPrice} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.PastPrice}
+ */
+proto.vega.snapshot.v1.PastPrice.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTime(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVolumeWeightedPrice(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.PastPrice.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.PastPrice} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PastPrice.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getVolumeWeightedPrice();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 time = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.getTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.PastPrice} returns this
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.setTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string volume_weighted_price = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.getVolumeWeightedPrice = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PastPrice} returns this
+ */
+proto.vega.snapshot.v1.PastPrice.prototype.setVolumeWeightedPrice = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.vega.snapshot.v1.PriceMonitor.repeatedFields_ = [4,7,9,11];
+proto.vega.snapshot.v1.PriceMonitor.repeatedFields_ = [4,7,9,11,12,13];
 
 
 
@@ -9221,7 +13594,11 @@ proto.vega.snapshot.v1.PriceMonitor.toObject = function(includeInstance, msg) {
     proto.vega.snapshot.v1.PriceRangeCache.toObject, includeInstance),
     refPriceCacheTime: jspb.Message.getFieldWithDefault(msg, 10, 0),
     refPriceCacheList: jspb.Message.toObjectList(msg.getRefPriceCacheList(),
-    proto.vega.snapshot.v1.DecimalMap.toObject, includeInstance)
+    proto.vega.snapshot.v1.DecimalMap.toObject, includeInstance),
+    pricesNowList: jspb.Message.toObjectList(msg.getPricesNowList(),
+    proto.vega.snapshot.v1.CurrentPrice.toObject, includeInstance),
+    pricesPastList: jspb.Message.toObjectList(msg.getPricesPastList(),
+    proto.vega.snapshot.v1.PastPrice.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -9297,6 +13674,16 @@ proto.vega.snapshot.v1.PriceMonitor.deserializeBinaryFromReader = function(msg, 
       var value = new proto.vega.snapshot.v1.DecimalMap;
       reader.readMessage(value,proto.vega.snapshot.v1.DecimalMap.deserializeBinaryFromReader);
       msg.addRefPriceCache(value);
+      break;
+    case 12:
+      var value = new proto.vega.snapshot.v1.CurrentPrice;
+      reader.readMessage(value,proto.vega.snapshot.v1.CurrentPrice.deserializeBinaryFromReader);
+      msg.addPricesNow(value);
+      break;
+    case 13:
+      var value = new proto.vega.snapshot.v1.PastPrice;
+      reader.readMessage(value,proto.vega.snapshot.v1.PastPrice.deserializeBinaryFromReader);
+      msg.addPricesPast(value);
       break;
     default:
       reader.skipField();
@@ -9392,6 +13779,22 @@ proto.vega.snapshot.v1.PriceMonitor.serializeBinaryToWriter = function(message, 
       11,
       f,
       proto.vega.snapshot.v1.DecimalMap.serializeBinaryToWriter
+    );
+  }
+  f = message.getPricesNowList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      12,
+      f,
+      proto.vega.snapshot.v1.CurrentPrice.serializeBinaryToWriter
+    );
+  }
+  f = message.getPricesPastList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      13,
+      f,
+      proto.vega.snapshot.v1.PastPrice.serializeBinaryToWriter
     );
   }
 };
@@ -9636,6 +14039,82 @@ proto.vega.snapshot.v1.PriceMonitor.prototype.addRefPriceCache = function(opt_va
  */
 proto.vega.snapshot.v1.PriceMonitor.prototype.clearRefPriceCacheList = function() {
   return this.setRefPriceCacheList([]);
+};
+
+
+/**
+ * repeated CurrentPrice prices_now = 12;
+ * @return {!Array<!proto.vega.snapshot.v1.CurrentPrice>}
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.getPricesNowList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.CurrentPrice>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.CurrentPrice, 12));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.CurrentPrice>} value
+ * @return {!proto.vega.snapshot.v1.PriceMonitor} returns this
+*/
+proto.vega.snapshot.v1.PriceMonitor.prototype.setPricesNowList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 12, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.CurrentPrice=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.CurrentPrice}
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.addPricesNow = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.vega.snapshot.v1.CurrentPrice, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.PriceMonitor} returns this
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.clearPricesNowList = function() {
+  return this.setPricesNowList([]);
+};
+
+
+/**
+ * repeated PastPrice prices_past = 13;
+ * @return {!Array<!proto.vega.snapshot.v1.PastPrice>}
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.getPricesPastList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.PastPrice>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.PastPrice, 13));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.PastPrice>} value
+ * @return {!proto.vega.snapshot.v1.PriceMonitor} returns this
+*/
+proto.vega.snapshot.v1.PriceMonitor.prototype.setPricesPastList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 13, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.PastPrice=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.PastPrice}
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.addPricesPast = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 13, opt_value, proto.vega.snapshot.v1.PastPrice, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.PriceMonitor} returns this
+ */
+proto.vega.snapshot.v1.PriceMonitor.prototype.clearPricesPastList = function() {
+  return this.setPricesPastList([]);
 };
 
 
@@ -11107,7 +15586,10 @@ proto.vega.snapshot.v1.ExecutionMarkets.prototype.toObject = function(opt_includ
 proto.vega.snapshot.v1.ExecutionMarkets.toObject = function(includeInstance, msg) {
   var f, obj = {
     marketsList: jspb.Message.toObjectList(msg.getMarketsList(),
-    proto.vega.snapshot.v1.Market.toObject, includeInstance)
+    proto.vega.snapshot.v1.Market.toObject, includeInstance),
+    batches: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    orders: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    proposals: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -11149,6 +15631,18 @@ proto.vega.snapshot.v1.ExecutionMarkets.deserializeBinaryFromReader = function(m
       reader.readMessage(value,proto.vega.snapshot.v1.Market.deserializeBinaryFromReader);
       msg.addMarkets(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBatches(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setOrders(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setProposals(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11184,6 +15678,27 @@ proto.vega.snapshot.v1.ExecutionMarkets.serializeBinaryToWriter = function(messa
       1,
       f,
       proto.vega.snapshot.v1.Market.serializeBinaryToWriter
+    );
+  }
+  f = message.getBatches();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getOrders();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getProposals();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
     );
   }
 };
@@ -11224,6 +15739,60 @@ proto.vega.snapshot.v1.ExecutionMarkets.prototype.addMarkets = function(opt_valu
  */
 proto.vega.snapshot.v1.ExecutionMarkets.prototype.clearMarketsList = function() {
   return this.setMarketsList([]);
+};
+
+
+/**
+ * optional uint64 batches = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.getBatches = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.ExecutionMarkets} returns this
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.setBatches = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 orders = 3;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.getOrders = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.ExecutionMarkets} returns this
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.setOrders = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 proposals = 4;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.getProposals = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.ExecutionMarkets} returns this
+ */
+proto.vega.snapshot.v1.ExecutionMarkets.prototype.setProposals = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -12168,202 +16737,12 @@ proto.vega.snapshot.v1.EpochState.prototype.setReadyToEndEpoch = function(value)
 
 
 
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.toObject = function(opt_includeInstance) {
-  return proto.vega.snapshot.v1.ExecutionIDGenerator.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.vega.snapshot.v1.ExecutionIDGenerator} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    batches: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    orders: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    proposals: jspb.Message.getFieldWithDefault(msg, 3, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.vega.snapshot.v1.ExecutionIDGenerator}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.vega.snapshot.v1.ExecutionIDGenerator;
-  return proto.vega.snapshot.v1.ExecutionIDGenerator.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.vega.snapshot.v1.ExecutionIDGenerator} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.vega.snapshot.v1.ExecutionIDGenerator}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setBatches(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setOrders(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setProposals(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.vega.snapshot.v1.ExecutionIDGenerator.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.vega.snapshot.v1.ExecutionIDGenerator} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getBatches();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getOrders();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getProposals();
-  if (f !== 0) {
-    writer.writeUint64(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 batches = 1;
- * @return {number}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.getBatches = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.vega.snapshot.v1.ExecutionIDGenerator} returns this
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.setBatches = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint64 orders = 2;
- * @return {number}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.getOrders = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.vega.snapshot.v1.ExecutionIDGenerator} returns this
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.setOrders = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional uint64 proposals = 3;
- * @return {number}
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.getProposals = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.vega.snapshot.v1.ExecutionIDGenerator} returns this
- */
-proto.vega.snapshot.v1.ExecutionIDGenerator.prototype.setProposals = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.repeatedFields_ = [4];
+proto.vega.snapshot.v1.RewardsPendingPayouts.repeatedFields_ = [1];
 
 
 
@@ -12396,14 +16775,8 @@ proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.toObject = function(opt_i
  */
 proto.vega.snapshot.v1.RewardsPendingPayouts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rewardTime: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    fromAccount: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    asset: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    rewardPartyAmountList: jspb.Message.toObjectList(msg.getRewardPartyAmountList(),
-    proto.vega.snapshot.v1.RewardPartyAmount.toObject, includeInstance),
-    totalReward: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    epochSeq: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    timestamp: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    scheduledRewardsPayoutList: jspb.Message.toObjectList(msg.getScheduledRewardsPayoutList(),
+    proto.vega.snapshot.v1.ScheduledRewardsPayout.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -12441,33 +16814,9 @@ proto.vega.snapshot.v1.RewardsPendingPayouts.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRewardTime(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFromAccount(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAsset(value);
-      break;
-    case 4:
-      var value = new proto.vega.snapshot.v1.RewardPartyAmount;
-      reader.readMessage(value,proto.vega.snapshot.v1.RewardPartyAmount.deserializeBinaryFromReader);
-      msg.addRewardPartyAmount(value);
-      break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTotalReward(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setEpochSeq(value);
-      break;
-    case 7:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setTimestamp(value);
+      var value = new proto.vega.snapshot.v1.ScheduledRewardsPayout;
+      reader.readMessage(value,proto.vega.snapshot.v1.ScheduledRewardsPayout.deserializeBinaryFromReader);
+      msg.addScheduledRewardsPayout(value);
       break;
     default:
       reader.skipField();
@@ -12498,139 +16847,43 @@ proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.serializeBinary = functio
  */
 proto.vega.snapshot.v1.RewardsPendingPayouts.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRewardTime();
-  if (f !== 0) {
-    writer.writeInt64(
-      1,
-      f
-    );
-  }
-  f = message.getFromAccount();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-  f = message.getAsset();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-  f = message.getRewardPartyAmountList();
+  f = message.getScheduledRewardsPayoutList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      4,
+      1,
       f,
-      proto.vega.snapshot.v1.RewardPartyAmount.serializeBinaryToWriter
-    );
-  }
-  f = message.getTotalReward();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
-  f = message.getEpochSeq();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
-      f
-    );
-  }
-  f = message.getTimestamp();
-  if (f !== 0) {
-    writer.writeInt64(
-      7,
-      f
+      proto.vega.snapshot.v1.ScheduledRewardsPayout.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional int64 reward_time = 1;
- * @return {number}
+ * repeated ScheduledRewardsPayout scheduled_rewards_payout = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.ScheduledRewardsPayout>}
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getRewardTime = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getScheduledRewardsPayoutList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.ScheduledRewardsPayout>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.ScheduledRewardsPayout, 1));
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setRewardTime = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional string from_account = 2;
- * @return {string}
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getFromAccount = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setFromAccount = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string asset = 3;
- * @return {string}
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getAsset = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setAsset = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * repeated RewardPartyAmount reward_party_amount = 4;
- * @return {!Array<!proto.vega.snapshot.v1.RewardPartyAmount>}
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getRewardPartyAmountList = function() {
-  return /** @type{!Array<!proto.vega.snapshot.v1.RewardPartyAmount>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.RewardPartyAmount, 4));
-};
-
-
-/**
- * @param {!Array<!proto.vega.snapshot.v1.RewardPartyAmount>} value
+ * @param {!Array<!proto.vega.snapshot.v1.ScheduledRewardsPayout>} value
  * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
 */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setRewardPartyAmountList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setScheduledRewardsPayoutList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.vega.snapshot.v1.RewardPartyAmount=} opt_value
+ * @param {!proto.vega.snapshot.v1.ScheduledRewardsPayout=} opt_value
  * @param {number=} opt_index
- * @return {!proto.vega.snapshot.v1.RewardPartyAmount}
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout}
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.addRewardPartyAmount = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.vega.snapshot.v1.RewardPartyAmount, opt_index);
+proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.addScheduledRewardsPayout = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.ScheduledRewardsPayout, opt_index);
 };
 
 
@@ -12638,62 +16891,508 @@ proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.addRewardPartyAmount = fu
  * Clears the list making it empty but non-null.
  * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.clearRewardPartyAmountList = function() {
+proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.clearScheduledRewardsPayoutList = function() {
+  return this.setScheduledRewardsPayoutList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.ScheduledRewardsPayout.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.ScheduledRewardsPayout} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    payoutTime: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    rewardsPayoutList: jspb.Message.toObjectList(msg.getRewardsPayoutList(),
+    proto.vega.snapshot.v1.RewardsPayout.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.ScheduledRewardsPayout;
+  return proto.vega.snapshot.v1.ScheduledRewardsPayout.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.ScheduledRewardsPayout} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPayoutTime(value);
+      break;
+    case 2:
+      var value = new proto.vega.snapshot.v1.RewardsPayout;
+      reader.readMessage(value,proto.vega.snapshot.v1.RewardsPayout.deserializeBinaryFromReader);
+      msg.addRewardsPayout(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.ScheduledRewardsPayout.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.ScheduledRewardsPayout} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPayoutTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getRewardsPayoutList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.vega.snapshot.v1.RewardsPayout.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional int64 payout_time = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.getPayoutTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.setPayoutTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * repeated RewardsPayout rewards_payout = 2;
+ * @return {!Array<!proto.vega.snapshot.v1.RewardsPayout>}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.getRewardsPayoutList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.RewardsPayout>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.RewardsPayout, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.RewardsPayout>} value
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout} returns this
+*/
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.setRewardsPayoutList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.RewardsPayout=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.RewardsPayout}
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.addRewardsPayout = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.vega.snapshot.v1.RewardsPayout, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.ScheduledRewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.ScheduledRewardsPayout.prototype.clearRewardsPayoutList = function() {
+  return this.setRewardsPayoutList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.RewardsPayout.repeatedFields_ = [3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.RewardsPayout.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.RewardsPayout} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.RewardsPayout.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    fromAccount: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    asset: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    rewardPartyAmountList: jspb.Message.toObjectList(msg.getRewardPartyAmountList(),
+    proto.vega.snapshot.v1.RewardsPartyAmount.toObject, includeInstance),
+    totalReward: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    epochSeq: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 6, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.RewardsPayout}
+ */
+proto.vega.snapshot.v1.RewardsPayout.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.RewardsPayout;
+  return proto.vega.snapshot.v1.RewardsPayout.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.RewardsPayout} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.RewardsPayout}
+ */
+proto.vega.snapshot.v1.RewardsPayout.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFromAccount(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAsset(value);
+      break;
+    case 3:
+      var value = new proto.vega.snapshot.v1.RewardsPartyAmount;
+      reader.readMessage(value,proto.vega.snapshot.v1.RewardsPartyAmount.deserializeBinaryFromReader);
+      msg.addRewardPartyAmount(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTotalReward(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEpochSeq(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTimestamp(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.RewardsPayout.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.RewardsPayout} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.RewardsPayout.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFromAccount();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getAsset();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getRewardPartyAmountList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.vega.snapshot.v1.RewardsPartyAmount.serializeBinaryToWriter
+    );
+  }
+  f = message.getTotalReward();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getEpochSeq();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getTimestamp();
+  if (f !== 0) {
+    writer.writeInt64(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string from_account = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.getFromAccount = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.setFromAccount = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string asset = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.getAsset = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.setAsset = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated RewardsPartyAmount reward_party_amount = 3;
+ * @return {!Array<!proto.vega.snapshot.v1.RewardsPartyAmount>}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.getRewardPartyAmountList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.RewardsPartyAmount>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.RewardsPartyAmount, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.RewardsPartyAmount>} value
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
+*/
+proto.vega.snapshot.v1.RewardsPayout.prototype.setRewardPartyAmountList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.RewardsPartyAmount=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.RewardsPartyAmount}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.addRewardPartyAmount = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.vega.snapshot.v1.RewardsPartyAmount, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.clearRewardPartyAmountList = function() {
   return this.setRewardPartyAmountList([]);
 };
 
 
 /**
- * optional string total_reward = 5;
+ * optional string total_reward = 4;
  * @return {string}
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getTotalReward = function() {
+proto.vega.snapshot.v1.RewardsPayout.prototype.getTotalReward = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.setTotalReward = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string epoch_seq = 5;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.RewardsPayout.prototype.getEpochSeq = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setTotalReward = function(value) {
+proto.vega.snapshot.v1.RewardsPayout.prototype.setEpochSeq = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string epoch_seq = 6;
- * @return {string}
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getEpochSeq = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
- */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setEpochSeq = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional int64 timestamp = 7;
+ * optional int64 timestamp = 6;
  * @return {number}
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.getTimestamp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+proto.vega.snapshot.v1.RewardsPayout.prototype.getTimestamp = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.vega.snapshot.v1.RewardsPendingPayouts} returns this
+ * @return {!proto.vega.snapshot.v1.RewardsPayout} returns this
  */
-proto.vega.snapshot.v1.RewardsPendingPayouts.prototype.setTimestamp = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+proto.vega.snapshot.v1.RewardsPayout.prototype.setTimestamp = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -12713,8 +17412,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.toObject = function(opt_includeInstance) {
-  return proto.vega.snapshot.v1.RewardPartyAmount.toObject(opt_includeInstance, this);
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.RewardsPartyAmount.toObject(opt_includeInstance, this);
 };
 
 
@@ -12723,11 +17422,11 @@ proto.vega.snapshot.v1.RewardPartyAmount.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.vega.snapshot.v1.RewardPartyAmount} msg The msg instance to transform.
+ * @param {!proto.vega.snapshot.v1.RewardsPartyAmount} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vega.snapshot.v1.RewardPartyAmount.toObject = function(includeInstance, msg) {
+proto.vega.snapshot.v1.RewardsPartyAmount.toObject = function(includeInstance, msg) {
   var f, obj = {
     party: jspb.Message.getFieldWithDefault(msg, 1, ""),
     amount: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -12744,23 +17443,23 @@ proto.vega.snapshot.v1.RewardPartyAmount.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.vega.snapshot.v1.RewardPartyAmount}
+ * @return {!proto.vega.snapshot.v1.RewardsPartyAmount}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.deserializeBinary = function(bytes) {
+proto.vega.snapshot.v1.RewardsPartyAmount.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.vega.snapshot.v1.RewardPartyAmount;
-  return proto.vega.snapshot.v1.RewardPartyAmount.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.vega.snapshot.v1.RewardsPartyAmount;
+  return proto.vega.snapshot.v1.RewardsPartyAmount.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.vega.snapshot.v1.RewardPartyAmount} msg The message object to deserialize into.
+ * @param {!proto.vega.snapshot.v1.RewardsPartyAmount} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.vega.snapshot.v1.RewardPartyAmount}
+ * @return {!proto.vega.snapshot.v1.RewardsPartyAmount}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.deserializeBinaryFromReader = function(msg, reader) {
+proto.vega.snapshot.v1.RewardsPartyAmount.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12788,9 +17487,9 @@ proto.vega.snapshot.v1.RewardPartyAmount.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.serializeBinary = function() {
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.vega.snapshot.v1.RewardPartyAmount.serializeBinaryToWriter(this, writer);
+  proto.vega.snapshot.v1.RewardsPartyAmount.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12798,11 +17497,11 @@ proto.vega.snapshot.v1.RewardPartyAmount.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.vega.snapshot.v1.RewardPartyAmount} message
+ * @param {!proto.vega.snapshot.v1.RewardsPartyAmount} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.vega.snapshot.v1.RewardPartyAmount.serializeBinaryToWriter = function(message, writer) {
+proto.vega.snapshot.v1.RewardsPartyAmount.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParty();
   if (f.length > 0) {
@@ -12825,16 +17524,16 @@ proto.vega.snapshot.v1.RewardPartyAmount.serializeBinaryToWriter = function(mess
  * optional string party = 1;
  * @return {string}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.getParty = function() {
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.getParty = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardPartyAmount} returns this
+ * @return {!proto.vega.snapshot.v1.RewardsPartyAmount} returns this
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.setParty = function(value) {
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.setParty = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -12843,16 +17542,4955 @@ proto.vega.snapshot.v1.RewardPartyAmount.prototype.setParty = function(value) {
  * optional string amount = 2;
  * @return {string}
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.getAmount = function() {
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.getAmount = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.vega.snapshot.v1.RewardPartyAmount} returns this
+ * @return {!proto.vega.snapshot.v1.RewardsPartyAmount} returns this
  */
-proto.vega.snapshot.v1.RewardPartyAmount.prototype.setAmount = function(value) {
+proto.vega.snapshot.v1.RewardsPartyAmount.prototype.setAmount = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LimitState.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LimitState} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LimitState.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    blockCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    canProposeMarket: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    canProposeAsset: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    genesisLoaded: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    proposeMarketEnabled: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    proposeAssetEnabled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    proposeMarketEnabledFrom: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    proposeAssetEnabledFrom: jspb.Message.getFieldWithDefault(msg, 8, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LimitState}
+ */
+proto.vega.snapshot.v1.LimitState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LimitState;
+  return proto.vega.snapshot.v1.LimitState.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LimitState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LimitState}
+ */
+proto.vega.snapshot.v1.LimitState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setBlockCount(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanProposeMarket(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanProposeAsset(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setGenesisLoaded(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setProposeMarketEnabled(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setProposeAssetEnabled(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setProposeMarketEnabledFrom(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setProposeAssetEnabledFrom(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LimitState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LimitState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LimitState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getBlockCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+  f = message.getCanProposeMarket();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+  f = message.getCanProposeAsset();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getGenesisLoaded();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getProposeMarketEnabled();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = message.getProposeAssetEnabled();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
+    );
+  }
+  f = message.getProposeMarketEnabledFrom();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
+    );
+  }
+  f = message.getProposeAssetEnabledFrom();
+  if (f !== 0) {
+    writer.writeInt64(
+      8,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint32 block_count = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getBlockCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setBlockCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional bool can_propose_market = 2;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getCanProposeMarket = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setCanProposeMarket = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional bool can_propose_asset = 3;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getCanProposeAsset = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setCanProposeAsset = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional bool genesis_loaded = 4;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getGenesisLoaded = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setGenesisLoaded = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional bool propose_market_enabled = 5;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getProposeMarketEnabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setProposeMarketEnabled = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional bool propose_asset_enabled = 6;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getProposeAssetEnabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setProposeAssetEnabled = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional int64 propose_market_enabled_from = 7;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getProposeMarketEnabledFrom = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setProposeMarketEnabledFrom = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional int64 propose_asset_enabled_from = 8;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.LimitState.prototype.getProposeAssetEnabledFrom = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.LimitState} returns this
+ */
+proto.vega.snapshot.v1.LimitState.prototype.setProposeAssetEnabledFrom = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.repeatedFields_ = [1,2,3,4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.VoteSpamPolicy.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.VoteSpamPolicy} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    partyToVoteList: jspb.Message.toObjectList(msg.getPartyToVoteList(),
+    proto.vega.snapshot.v1.PartyProposalVoteCount.toObject, includeInstance),
+    bannedPartiesList: jspb.Message.toObjectList(msg.getBannedPartiesList(),
+    proto.vega.snapshot.v1.BannedParty.toObject, includeInstance),
+    tokenBalanceList: jspb.Message.toObjectList(msg.getTokenBalanceList(),
+    proto.vega.snapshot.v1.PartyTokenBalance.toObject, includeInstance),
+    recentBlocksRejectStatsList: jspb.Message.toObjectList(msg.getRecentBlocksRejectStatsList(),
+    proto.vega.snapshot.v1.BlockRejectStats.toObject, includeInstance),
+    currentBlockIndex: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    lastIncreaseBlock: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    currentEpochSeq: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    minVotingTokensFactor: jspb.Message.getFieldWithDefault(msg, 8, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.VoteSpamPolicy;
+  return proto.vega.snapshot.v1.VoteSpamPolicy.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.VoteSpamPolicy} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.PartyProposalVoteCount;
+      reader.readMessage(value,proto.vega.snapshot.v1.PartyProposalVoteCount.deserializeBinaryFromReader);
+      msg.addPartyToVote(value);
+      break;
+    case 2:
+      var value = new proto.vega.snapshot.v1.BannedParty;
+      reader.readMessage(value,proto.vega.snapshot.v1.BannedParty.deserializeBinaryFromReader);
+      msg.addBannedParties(value);
+      break;
+    case 3:
+      var value = new proto.vega.snapshot.v1.PartyTokenBalance;
+      reader.readMessage(value,proto.vega.snapshot.v1.PartyTokenBalance.deserializeBinaryFromReader);
+      msg.addTokenBalance(value);
+      break;
+    case 4:
+      var value = new proto.vega.snapshot.v1.BlockRejectStats;
+      reader.readMessage(value,proto.vega.snapshot.v1.BlockRejectStats.deserializeBinaryFromReader);
+      msg.addRecentBlocksRejectStats(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCurrentBlockIndex(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLastIncreaseBlock(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCurrentEpochSeq(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMinVotingTokensFactor(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.VoteSpamPolicy.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.VoteSpamPolicy} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPartyToVoteList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.PartyProposalVoteCount.serializeBinaryToWriter
+    );
+  }
+  f = message.getBannedPartiesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.vega.snapshot.v1.BannedParty.serializeBinaryToWriter
+    );
+  }
+  f = message.getTokenBalanceList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.vega.snapshot.v1.PartyTokenBalance.serializeBinaryToWriter
+    );
+  }
+  f = message.getRecentBlocksRejectStatsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.vega.snapshot.v1.BlockRejectStats.serializeBinaryToWriter
+    );
+  }
+  f = message.getCurrentBlockIndex();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+  f = message.getLastIncreaseBlock();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getCurrentEpochSeq();
+  if (f !== 0) {
+    writer.writeUint64(
+      7,
+      f
+    );
+  }
+  f = message.getMinVotingTokensFactor();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated PartyProposalVoteCount party_to_vote = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.PartyProposalVoteCount>}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getPartyToVoteList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.PartyProposalVoteCount>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.PartyProposalVoteCount, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.PartyProposalVoteCount>} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setPartyToVoteList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.PartyProposalVoteCount=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.addPartyToVote = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.PartyProposalVoteCount, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.clearPartyToVoteList = function() {
+  return this.setPartyToVoteList([]);
+};
+
+
+/**
+ * repeated BannedParty banned_parties = 2;
+ * @return {!Array<!proto.vega.snapshot.v1.BannedParty>}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getBannedPartiesList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.BannedParty>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.BannedParty, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.BannedParty>} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setBannedPartiesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.BannedParty=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.BannedParty}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.addBannedParties = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.vega.snapshot.v1.BannedParty, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.clearBannedPartiesList = function() {
+  return this.setBannedPartiesList([]);
+};
+
+
+/**
+ * repeated PartyTokenBalance token_balance = 3;
+ * @return {!Array<!proto.vega.snapshot.v1.PartyTokenBalance>}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getTokenBalanceList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.PartyTokenBalance>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.PartyTokenBalance, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.PartyTokenBalance>} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setTokenBalanceList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.PartyTokenBalance=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.addTokenBalance = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.vega.snapshot.v1.PartyTokenBalance, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.clearTokenBalanceList = function() {
+  return this.setTokenBalanceList([]);
+};
+
+
+/**
+ * repeated BlockRejectStats recent_blocks_reject_stats = 4;
+ * @return {!Array<!proto.vega.snapshot.v1.BlockRejectStats>}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getRecentBlocksRejectStatsList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.BlockRejectStats>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.BlockRejectStats, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.BlockRejectStats>} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setRecentBlocksRejectStatsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.BlockRejectStats=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.BlockRejectStats}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.addRecentBlocksRejectStats = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.vega.snapshot.v1.BlockRejectStats, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.clearRecentBlocksRejectStatsList = function() {
+  return this.setRecentBlocksRejectStatsList([]);
+};
+
+
+/**
+ * optional uint64 current_block_index = 5;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getCurrentBlockIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setCurrentBlockIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional uint64 last_increase_block = 6;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getLastIncreaseBlock = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setLastIncreaseBlock = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional uint64 current_epoch_seq = 7;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getCurrentEpochSeq = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setCurrentEpochSeq = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string min_voting_tokens_factor = 8;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.getMinVotingTokensFactor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.VoteSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.VoteSpamPolicy.prototype.setMinVotingTokensFactor = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.PartyProposalVoteCount.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.PartyProposalVoteCount} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    party: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    proposal: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 3, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.PartyProposalVoteCount;
+  return proto.vega.snapshot.v1.PartyProposalVoteCount.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.PartyProposalVoteCount} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParty(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProposal(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCount(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.PartyProposalVoteCount.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.PartyProposalVoteCount} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParty();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getProposal();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string party = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.getParty = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount} returns this
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.setParty = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string proposal = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.getProposal = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount} returns this
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.setProposal = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 count = 3;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.getCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.PartyProposalVoteCount} returns this
+ */
+proto.vega.snapshot.v1.PartyProposalVoteCount.prototype.setCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.BannedParty.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.BannedParty} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.BannedParty.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    party: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    untilEpoch: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.BannedParty}
+ */
+proto.vega.snapshot.v1.BannedParty.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.BannedParty;
+  return proto.vega.snapshot.v1.BannedParty.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.BannedParty} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.BannedParty}
+ */
+proto.vega.snapshot.v1.BannedParty.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParty(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setUntilEpoch(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.BannedParty.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.BannedParty} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.BannedParty.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParty();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getUntilEpoch();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string party = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.getParty = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.BannedParty} returns this
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.setParty = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 until_epoch = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.getUntilEpoch = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.BannedParty} returns this
+ */
+proto.vega.snapshot.v1.BannedParty.prototype.setUntilEpoch = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.PartyTokenBalance.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.PartyTokenBalance} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    party: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    balance: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.PartyTokenBalance;
+  return proto.vega.snapshot.v1.PartyTokenBalance.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.PartyTokenBalance} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParty(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBalance(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.PartyTokenBalance.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.PartyTokenBalance} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParty();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getBalance();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string party = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.getParty = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance} returns this
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.setParty = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string balance = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.getBalance = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance} returns this
+ */
+proto.vega.snapshot.v1.PartyTokenBalance.prototype.setBalance = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.BlockRejectStats.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.BlockRejectStats} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.BlockRejectStats.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    rejected: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    total: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.BlockRejectStats}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.BlockRejectStats;
+  return proto.vega.snapshot.v1.BlockRejectStats.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.BlockRejectStats} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.BlockRejectStats}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setRejected(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotal(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.BlockRejectStats.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.BlockRejectStats} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.BlockRejectStats.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getRejected();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getTotal();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 rejected = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.getRejected = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.BlockRejectStats} returns this
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.setRejected = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 total = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.getTotal = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.BlockRejectStats} returns this
+ */
+proto.vega.snapshot.v1.BlockRejectStats.prototype.setTotal = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.SpamPartyTransactionCount.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.SpamPartyTransactionCount} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    party: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.SpamPartyTransactionCount}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.SpamPartyTransactionCount;
+  return proto.vega.snapshot.v1.SpamPartyTransactionCount.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.SpamPartyTransactionCount} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.SpamPartyTransactionCount}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setParty(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCount(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.SpamPartyTransactionCount.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.SpamPartyTransactionCount} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getParty();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string party = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.getParty = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.SpamPartyTransactionCount} returns this
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.setParty = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 count = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.getCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.SpamPartyTransactionCount} returns this
+ */
+proto.vega.snapshot.v1.SpamPartyTransactionCount.prototype.setCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.repeatedFields_ = [2,3,4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.SimpleSpamPolicy.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.SimpleSpamPolicy} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    policyName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    partyToCountList: jspb.Message.toObjectList(msg.getPartyToCountList(),
+    proto.vega.snapshot.v1.SpamPartyTransactionCount.toObject, includeInstance),
+    bannedPartiesList: jspb.Message.toObjectList(msg.getBannedPartiesList(),
+    proto.vega.snapshot.v1.BannedParty.toObject, includeInstance),
+    tokenBalanceList: jspb.Message.toObjectList(msg.getTokenBalanceList(),
+    proto.vega.snapshot.v1.PartyTokenBalance.toObject, includeInstance),
+    currentEpochSeq: jspb.Message.getFieldWithDefault(msg, 5, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.SimpleSpamPolicy;
+  return proto.vega.snapshot.v1.SimpleSpamPolicy.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.SimpleSpamPolicy} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPolicyName(value);
+      break;
+    case 2:
+      var value = new proto.vega.snapshot.v1.SpamPartyTransactionCount;
+      reader.readMessage(value,proto.vega.snapshot.v1.SpamPartyTransactionCount.deserializeBinaryFromReader);
+      msg.addPartyToCount(value);
+      break;
+    case 3:
+      var value = new proto.vega.snapshot.v1.BannedParty;
+      reader.readMessage(value,proto.vega.snapshot.v1.BannedParty.deserializeBinaryFromReader);
+      msg.addBannedParties(value);
+      break;
+    case 4:
+      var value = new proto.vega.snapshot.v1.PartyTokenBalance;
+      reader.readMessage(value,proto.vega.snapshot.v1.PartyTokenBalance.deserializeBinaryFromReader);
+      msg.addTokenBalance(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCurrentEpochSeq(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.SimpleSpamPolicy.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.SimpleSpamPolicy} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPolicyName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getPartyToCountList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.vega.snapshot.v1.SpamPartyTransactionCount.serializeBinaryToWriter
+    );
+  }
+  f = message.getBannedPartiesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.vega.snapshot.v1.BannedParty.serializeBinaryToWriter
+    );
+  }
+  f = message.getTokenBalanceList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.vega.snapshot.v1.PartyTokenBalance.serializeBinaryToWriter
+    );
+  }
+  f = message.getCurrentEpochSeq();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string policy_name = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.getPolicyName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.setPolicyName = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated SpamPartyTransactionCount party_to_count = 2;
+ * @return {!Array<!proto.vega.snapshot.v1.SpamPartyTransactionCount>}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.getPartyToCountList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.SpamPartyTransactionCount>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.SpamPartyTransactionCount, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.SpamPartyTransactionCount>} value
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.setPartyToCountList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.SpamPartyTransactionCount=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.SpamPartyTransactionCount}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.addPartyToCount = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.vega.snapshot.v1.SpamPartyTransactionCount, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.clearPartyToCountList = function() {
+  return this.setPartyToCountList([]);
+};
+
+
+/**
+ * repeated BannedParty banned_parties = 3;
+ * @return {!Array<!proto.vega.snapshot.v1.BannedParty>}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.getBannedPartiesList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.BannedParty>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.BannedParty, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.BannedParty>} value
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.setBannedPartiesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.BannedParty=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.BannedParty}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.addBannedParties = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.vega.snapshot.v1.BannedParty, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.clearBannedPartiesList = function() {
+  return this.setBannedPartiesList([]);
+};
+
+
+/**
+ * repeated PartyTokenBalance token_balance = 4;
+ * @return {!Array<!proto.vega.snapshot.v1.PartyTokenBalance>}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.getTokenBalanceList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.PartyTokenBalance>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.PartyTokenBalance, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.PartyTokenBalance>} value
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+*/
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.setTokenBalanceList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.PartyTokenBalance=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.PartyTokenBalance}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.addTokenBalance = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.vega.snapshot.v1.PartyTokenBalance, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.clearTokenBalanceList = function() {
+  return this.setTokenBalanceList([]);
+};
+
+
+/**
+ * optional uint64 current_epoch_seq = 5;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.getCurrentEpochSeq = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.SimpleSpamPolicy} returns this
+ */
+proto.vega.snapshot.v1.SimpleSpamPolicy.prototype.setCurrentEpochSeq = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.NotarySigs.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.NotarySigs} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.NotarySigs.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    kind: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    node: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sig: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.NotarySigs}
+ */
+proto.vega.snapshot.v1.NotarySigs.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.NotarySigs;
+  return proto.vega.snapshot.v1.NotarySigs.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.NotarySigs} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.NotarySigs}
+ */
+proto.vega.snapshot.v1.NotarySigs.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setKind(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNode(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSig(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.NotarySigs.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.NotarySigs} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.NotarySigs.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getKind();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getNode();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getSig();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.NotarySigs} returns this
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int32 kind = 2;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.getKind = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.NotarySigs} returns this
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.setKind = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional string node = 3;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.getNode = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.NotarySigs} returns this
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.setNode = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string sig = 4;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.getSig = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.NotarySigs} returns this
+ */
+proto.vega.snapshot.v1.NotarySigs.prototype.setSig = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.Notary.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.Notary.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.Notary.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.Notary} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Notary.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    notarySigsList: jspb.Message.toObjectList(msg.getNotarySigsList(),
+    proto.vega.snapshot.v1.NotarySigs.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.Notary}
+ */
+proto.vega.snapshot.v1.Notary.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.Notary;
+  return proto.vega.snapshot.v1.Notary.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.Notary} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.Notary}
+ */
+proto.vega.snapshot.v1.Notary.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.NotarySigs;
+      reader.readMessage(value,proto.vega.snapshot.v1.NotarySigs.deserializeBinaryFromReader);
+      msg.addNotarySigs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.Notary.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.Notary.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.Notary} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Notary.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNotarySigsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.NotarySigs.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated NotarySigs notary_sigs = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.NotarySigs>}
+ */
+proto.vega.snapshot.v1.Notary.prototype.getNotarySigsList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.NotarySigs>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.NotarySigs, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.NotarySigs>} value
+ * @return {!proto.vega.snapshot.v1.Notary} returns this
+*/
+proto.vega.snapshot.v1.Notary.prototype.setNotarySigsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.NotarySigs=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.NotarySigs}
+ */
+proto.vega.snapshot.v1.Notary.prototype.addNotarySigs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.NotarySigs, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Notary} returns this
+ */
+proto.vega.snapshot.v1.Notary.prototype.clearNotarySigsList = function() {
+  return this.setNotarySigsList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.ReplayProtection.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.ReplayProtection.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.ReplayProtection.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.ReplayProtection} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.ReplayProtection.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    recentBlocksTransactionsList: jspb.Message.toObjectList(msg.getRecentBlocksTransactionsList(),
+    proto.vega.snapshot.v1.RecentBlocksTransactions.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.ReplayProtection}
+ */
+proto.vega.snapshot.v1.ReplayProtection.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.ReplayProtection;
+  return proto.vega.snapshot.v1.ReplayProtection.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.ReplayProtection} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.ReplayProtection}
+ */
+proto.vega.snapshot.v1.ReplayProtection.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.RecentBlocksTransactions;
+      reader.readMessage(value,proto.vega.snapshot.v1.RecentBlocksTransactions.deserializeBinaryFromReader);
+      msg.addRecentBlocksTransactions(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.ReplayProtection.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.ReplayProtection.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.ReplayProtection} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.ReplayProtection.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getRecentBlocksTransactionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.RecentBlocksTransactions.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated RecentBlocksTransactions recent_blocks_transactions = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.RecentBlocksTransactions>}
+ */
+proto.vega.snapshot.v1.ReplayProtection.prototype.getRecentBlocksTransactionsList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.RecentBlocksTransactions>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.RecentBlocksTransactions, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.RecentBlocksTransactions>} value
+ * @return {!proto.vega.snapshot.v1.ReplayProtection} returns this
+*/
+proto.vega.snapshot.v1.ReplayProtection.prototype.setRecentBlocksTransactionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.RecentBlocksTransactions=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions}
+ */
+proto.vega.snapshot.v1.ReplayProtection.prototype.addRecentBlocksTransactions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.RecentBlocksTransactions, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.ReplayProtection} returns this
+ */
+proto.vega.snapshot.v1.ReplayProtection.prototype.clearRecentBlocksTransactionsList = function() {
+  return this.setRecentBlocksTransactionsList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.RecentBlocksTransactions.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.RecentBlocksTransactions} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    txList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions}
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.RecentBlocksTransactions;
+  return proto.vega.snapshot.v1.RecentBlocksTransactions.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.RecentBlocksTransactions} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions}
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTx(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.RecentBlocksTransactions.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.RecentBlocksTransactions} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTxList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string tx = 1;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.getTxList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions} returns this
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.setTxList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions} returns this
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.addTx = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.RecentBlocksTransactions} returns this
+ */
+proto.vega.snapshot.v1.RecentBlocksTransactions.prototype.clearTxList = function() {
+  return this.setTxList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.FutureState.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.FutureState.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.FutureState} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.FutureState.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    marketId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    settlementPrice: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    tradingTerminated: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.FutureState}
+ */
+proto.vega.snapshot.v1.FutureState.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.FutureState;
+  return proto.vega.snapshot.v1.FutureState.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.FutureState} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.FutureState}
+ */
+proto.vega.snapshot.v1.FutureState.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSettlementPrice(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTradingTerminated(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.FutureState.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.FutureState.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.FutureState} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.FutureState.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSettlementPrice();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getTradingTerminated();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string market_id = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.FutureState.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.FutureState} returns this
+ */
+proto.vega.snapshot.v1.FutureState.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string settlement_price = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.FutureState.prototype.getSettlementPrice = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.FutureState} returns this
+ */
+proto.vega.snapshot.v1.FutureState.prototype.setSettlementPrice = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool trading_terminated = 3;
+ * @return {boolean}
+ */
+proto.vega.snapshot.v1.FutureState.prototype.getTradingTerminated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.vega.snapshot.v1.FutureState} returns this
+ */
+proto.vega.snapshot.v1.FutureState.prototype.setTradingTerminated = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.StakeVerifierDeposited.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.StakeVerifierDeposited} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pendingDepositedList: jspb.Message.toObjectList(msg.getPendingDepositedList(),
+    proto.vega.snapshot.v1.StakeVerifierPending.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierDeposited}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.StakeVerifierDeposited;
+  return proto.vega.snapshot.v1.StakeVerifierDeposited.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierDeposited} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierDeposited}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.StakeVerifierPending;
+      reader.readMessage(value,proto.vega.snapshot.v1.StakeVerifierPending.deserializeBinaryFromReader);
+      msg.addPendingDeposited(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.StakeVerifierDeposited.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierDeposited} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPendingDepositedList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.StakeVerifierPending.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated StakeVerifierPending pending_deposited = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.StakeVerifierPending>}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.getPendingDepositedList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.StakeVerifierPending>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.StakeVerifierPending, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.StakeVerifierPending>} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierDeposited} returns this
+*/
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.setPendingDepositedList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.StakeVerifierPending=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending}
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.addPendingDeposited = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.StakeVerifierPending, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierDeposited} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierDeposited.prototype.clearPendingDepositedList = function() {
+  return this.setPendingDepositedList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.StakeVerifierRemoved.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.StakeVerifierRemoved} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pendingRemovedList: jspb.Message.toObjectList(msg.getPendingRemovedList(),
+    proto.vega.snapshot.v1.StakeVerifierPending.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierRemoved}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.StakeVerifierRemoved;
+  return proto.vega.snapshot.v1.StakeVerifierRemoved.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierRemoved} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierRemoved}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.vega.snapshot.v1.StakeVerifierPending;
+      reader.readMessage(value,proto.vega.snapshot.v1.StakeVerifierPending.deserializeBinaryFromReader);
+      msg.addPendingRemoved(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.StakeVerifierRemoved.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierRemoved} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPendingRemovedList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.vega.snapshot.v1.StakeVerifierPending.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated StakeVerifierPending pending_removed = 1;
+ * @return {!Array<!proto.vega.snapshot.v1.StakeVerifierPending>}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.getPendingRemovedList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.StakeVerifierPending>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.StakeVerifierPending, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.StakeVerifierPending>} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierRemoved} returns this
+*/
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.setPendingRemovedList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.StakeVerifierPending=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending}
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.addPendingRemoved = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.snapshot.v1.StakeVerifierPending, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierRemoved} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierRemoved.prototype.clearPendingRemovedList = function() {
+  return this.setPendingRemovedList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.StakeVerifierPending.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.StakeVerifierPending} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    ethereumAddress: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    vegaPublicKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    amount: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    blockTime: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    blockNumber: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    logIndex: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    txId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 8, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.StakeVerifierPending;
+  return proto.vega.snapshot.v1.StakeVerifierPending.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierPending} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEthereumAddress(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVegaPublicKey(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAmount(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setBlockTime(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockNumber(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setLogIndex(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTxId(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.StakeVerifierPending.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.StakeVerifierPending} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getEthereumAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getVegaPublicKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getAmount();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getBlockTime();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
+  f = message.getBlockNumber();
+  if (f !== 0) {
+    writer.writeUint64(
+      5,
+      f
+    );
+  }
+  f = message.getLogIndex();
+  if (f !== 0) {
+    writer.writeUint64(
+      6,
+      f
+    );
+  }
+  f = message.getTxId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string ethereum_address = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getEthereumAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setEthereumAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string vega_public_key = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getVegaPublicKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setVegaPublicKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string amount = 3;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getAmount = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setAmount = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int64 block_time = 4;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getBlockTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setBlockTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional uint64 block_number = 5;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getBlockNumber = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setBlockNumber = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional uint64 log_index = 6;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getLogIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setLogIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string tx_id = 7;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getTxId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setTxId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string id = 8;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.StakeVerifierPending} returns this
+ */
+proto.vega.snapshot.v1.StakeVerifierPending.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.PendingKeyRotation.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.PendingKeyRotation} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    blockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    nodeId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    newPubKey: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    newPubKeyIndex: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.PendingKeyRotation;
+  return proto.vega.snapshot.v1.PendingKeyRotation.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.PendingKeyRotation} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setBlockHeight(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNewPubKey(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setNewPubKeyIndex(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.PendingKeyRotation.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.PendingKeyRotation} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getBlockHeight();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getNodeId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getNewPubKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getNewPubKeyIndex();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 block_height = 1;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.getBlockHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation} returns this
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.setBlockHeight = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string node_id = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation} returns this
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string new_pub_key = 3;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.getNewPubKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation} returns this
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.setNewPubKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional uint32 new_pub_key_index = 4;
+ * @return {number}
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.getNewPubKeyIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation} returns this
+ */
+proto.vega.snapshot.v1.PendingKeyRotation.prototype.setNewPubKeyIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.Topology.repeatedFields_ = [1,2,3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.Topology.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.Topology.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.Topology} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Topology.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    validatorDataList: jspb.Message.toObjectList(msg.getValidatorDataList(),
+    vega_events_v1_events_pb.ValidatorUpdate.toObject, includeInstance),
+    chainKeysList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    pendingPubKeyRotationsList: jspb.Message.toObjectList(msg.getPendingPubKeyRotationsList(),
+    proto.vega.snapshot.v1.PendingKeyRotation.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.Topology}
+ */
+proto.vega.snapshot.v1.Topology.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.Topology;
+  return proto.vega.snapshot.v1.Topology.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.Topology} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.Topology}
+ */
+proto.vega.snapshot.v1.Topology.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new vega_events_v1_events_pb.ValidatorUpdate;
+      reader.readMessage(value,vega_events_v1_events_pb.ValidatorUpdate.deserializeBinaryFromReader);
+      msg.addValidatorData(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addChainKeys(value);
+      break;
+    case 3:
+      var value = new proto.vega.snapshot.v1.PendingKeyRotation;
+      reader.readMessage(value,proto.vega.snapshot.v1.PendingKeyRotation.deserializeBinaryFromReader);
+      msg.addPendingPubKeyRotations(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.Topology.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.Topology.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.Topology} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.Topology.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getValidatorDataList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      vega_events_v1_events_pb.ValidatorUpdate.serializeBinaryToWriter
+    );
+  }
+  f = message.getChainKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getPendingPubKeyRotationsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.vega.snapshot.v1.PendingKeyRotation.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated vega.events.v1.ValidatorUpdate validator_data = 1;
+ * @return {!Array<!proto.vega.events.v1.ValidatorUpdate>}
+ */
+proto.vega.snapshot.v1.Topology.prototype.getValidatorDataList = function() {
+  return /** @type{!Array<!proto.vega.events.v1.ValidatorUpdate>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vega_events_v1_events_pb.ValidatorUpdate, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.events.v1.ValidatorUpdate>} value
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+*/
+proto.vega.snapshot.v1.Topology.prototype.setValidatorDataList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.events.v1.ValidatorUpdate=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.events.v1.ValidatorUpdate}
+ */
+proto.vega.snapshot.v1.Topology.prototype.addValidatorData = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.events.v1.ValidatorUpdate, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+ */
+proto.vega.snapshot.v1.Topology.prototype.clearValidatorDataList = function() {
+  return this.setValidatorDataList([]);
+};
+
+
+/**
+ * repeated string chain_keys = 2;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.Topology.prototype.getChainKeysList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+ */
+proto.vega.snapshot.v1.Topology.prototype.setChainKeysList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+ */
+proto.vega.snapshot.v1.Topology.prototype.addChainKeys = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+ */
+proto.vega.snapshot.v1.Topology.prototype.clearChainKeysList = function() {
+  return this.setChainKeysList([]);
+};
+
+
+/**
+ * repeated PendingKeyRotation pending_pub_key_rotations = 3;
+ * @return {!Array<!proto.vega.snapshot.v1.PendingKeyRotation>}
+ */
+proto.vega.snapshot.v1.Topology.prototype.getPendingPubKeyRotationsList = function() {
+  return /** @type{!Array<!proto.vega.snapshot.v1.PendingKeyRotation>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.vega.snapshot.v1.PendingKeyRotation, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.snapshot.v1.PendingKeyRotation>} value
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+*/
+proto.vega.snapshot.v1.Topology.prototype.setPendingPubKeyRotationsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.vega.snapshot.v1.PendingKeyRotation=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.PendingKeyRotation}
+ */
+proto.vega.snapshot.v1.Topology.prototype.addPendingPubKeyRotations = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.vega.snapshot.v1.PendingKeyRotation, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.Topology} returns this
+ */
+proto.vega.snapshot.v1.Topology.prototype.clearPendingPubKeyRotationsList = function() {
+  return this.setPendingPubKeyRotationsList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityParameters.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityParameters} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityParameters.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    maxFee: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    maxShapeSize: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    stakeToObligationFactor: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    marketId: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityParameters;
+  return proto.vega.snapshot.v1.LiquidityParameters.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityParameters} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMaxFee(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMaxShapeSize(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStakeToObligationFactor(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityParameters.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityParameters} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityParameters.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMaxFee();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getMaxShapeSize();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getStakeToObligationFactor();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string max_fee = 1;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.getMaxFee = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters} returns this
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.setMaxFee = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string max_shape_size = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.getMaxShapeSize = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters} returns this
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.setMaxShapeSize = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string stake_to_obligation_factor = 3;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.getStakeToObligationFactor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters} returns this
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.setStakeToObligationFactor = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string market_id = 4;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityParameters} returns this
+ */
+proto.vega.snapshot.v1.LiquidityParameters.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityPendingProvisions.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityPendingProvisions} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pendingProvisionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    marketId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityPendingProvisions;
+  return proto.vega.snapshot.v1.LiquidityPendingProvisions.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityPendingProvisions} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPendingProvisions(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityPendingProvisions.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityPendingProvisions} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPendingProvisionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string pending_provisions = 1;
+ * @return {!Array<string>}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.getPendingProvisionsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.setPendingProvisionsList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.addPendingProvisions = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.clearPendingProvisionsList = function() {
+  return this.setPendingProvisionsList([]);
+};
+
+
+/**
+ * optional string market_id = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPendingProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPendingProvisions.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    ordersList: jspb.Message.toObjectList(msg.getOrdersList(),
+    vega_vega_pb.Order.toObject, includeInstance),
+    marketId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders;
+  return proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new vega_vega_pb.Order;
+      reader.readMessage(value,vega_vega_pb.Order.deserializeBinaryFromReader);
+      msg.addOrders(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrdersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      vega_vega_pb.Order.serializeBinaryToWriter
+    );
+  }
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated vega.Order orders = 1;
+ * @return {!Array<!proto.vega.Order>}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.getOrdersList = function() {
+  return /** @type{!Array<!proto.vega.Order>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vega_vega_pb.Order, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.Order>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} returns this
+*/
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.setOrdersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.Order=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.Order}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.addOrders = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.Order, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.clearOrdersList = function() {
+  return this.setOrdersList([]);
+};
+
+
+/**
+ * optional string market_id = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPartiesLiquidityOrders.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityPartiesOrders.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesOrders} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    ordersList: jspb.Message.toObjectList(msg.getOrdersList(),
+    vega_vega_pb.Order.toObject, includeInstance),
+    marketId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesOrders}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityPartiesOrders;
+  return proto.vega.snapshot.v1.LiquidityPartiesOrders.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesOrders} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesOrders}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new vega_vega_pb.Order;
+      reader.readMessage(value,vega_vega_pb.Order.deserializeBinaryFromReader);
+      msg.addOrders(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityPartiesOrders.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityPartiesOrders} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrdersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      vega_vega_pb.Order.serializeBinaryToWriter
+    );
+  }
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated vega.Order orders = 1;
+ * @return {!Array<!proto.vega.Order>}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.getOrdersList = function() {
+  return /** @type{!Array<!proto.vega.Order>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vega_vega_pb.Order, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.Order>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesOrders} returns this
+*/
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.setOrdersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.Order=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.Order}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.addOrders = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.Order, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesOrders} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.clearOrdersList = function() {
+  return this.setOrdersList([]);
+};
+
+
+/**
+ * optional string market_id = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityPartiesOrders} returns this
+ */
+proto.vega.snapshot.v1.LiquidityPartiesOrders.prototype.setMarketId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.toObject = function(opt_includeInstance) {
+  return proto.vega.snapshot.v1.LiquidityProvisions.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.vega.snapshot.v1.LiquidityProvisions} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    liquidityProvisionsList: jspb.Message.toObjectList(msg.getLiquidityProvisionsList(),
+    vega_vega_pb.LiquidityProvision.toObject, includeInstance),
+    marketId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.vega.snapshot.v1.LiquidityProvisions}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.vega.snapshot.v1.LiquidityProvisions;
+  return proto.vega.snapshot.v1.LiquidityProvisions.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.vega.snapshot.v1.LiquidityProvisions} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.vega.snapshot.v1.LiquidityProvisions}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new vega_vega_pb.LiquidityProvision;
+      reader.readMessage(value,vega_vega_pb.LiquidityProvision.deserializeBinaryFromReader);
+      msg.addLiquidityProvisions(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarketId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.vega.snapshot.v1.LiquidityProvisions.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.vega.snapshot.v1.LiquidityProvisions} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLiquidityProvisionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      vega_vega_pb.LiquidityProvision.serializeBinaryToWriter
+    );
+  }
+  f = message.getMarketId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated vega.LiquidityProvision liquidity_provisions = 1;
+ * @return {!Array<!proto.vega.LiquidityProvision>}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.getLiquidityProvisionsList = function() {
+  return /** @type{!Array<!proto.vega.LiquidityProvision>} */ (
+    jspb.Message.getRepeatedWrapperField(this, vega_vega_pb.LiquidityProvision, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.vega.LiquidityProvision>} value
+ * @return {!proto.vega.snapshot.v1.LiquidityProvisions} returns this
+*/
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.setLiquidityProvisionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.vega.LiquidityProvision=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.vega.LiquidityProvision}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.addLiquidityProvisions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.vega.LiquidityProvision, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.vega.snapshot.v1.LiquidityProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.clearLiquidityProvisionsList = function() {
+  return this.setLiquidityProvisionsList([]);
+};
+
+
+/**
+ * optional string market_id = 2;
+ * @return {string}
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.getMarketId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.snapshot.v1.LiquidityProvisions} returns this
+ */
+proto.vega.snapshot.v1.LiquidityProvisions.prototype.setMarketId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

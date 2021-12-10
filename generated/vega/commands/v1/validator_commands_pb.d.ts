@@ -25,6 +25,8 @@ export class NodeRegistration extends jspb.Message {
     setName(value: string): NodeRegistration;
     getAvatarUrl(): string;
     setAvatarUrl(value: string): NodeRegistration;
+    getVegaPubKeyIndex(): number;
+    setVegaPubKeyIndex(value: number): NodeRegistration;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): NodeRegistration.AsObject;
@@ -46,6 +48,7 @@ export namespace NodeRegistration {
         id: string,
         name: string,
         avatarUrl: string,
+        vegaPubKeyIndex: number,
     }
 }
 
@@ -165,6 +168,35 @@ export namespace ChainEvent {
         STAKING_EVENT = 1005,
     }
 
+}
+
+export class KeyRotateSubmission extends jspb.Message {
+    getNewPubKeyIndex(): number;
+    setNewPubKeyIndex(value: number): KeyRotateSubmission;
+    getTargetBlock(): number;
+    setTargetBlock(value: number): KeyRotateSubmission;
+    getNewPubKey(): string;
+    setNewPubKey(value: string): KeyRotateSubmission;
+    getCurrentPubKeyHash(): string;
+    setCurrentPubKeyHash(value: string): KeyRotateSubmission;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): KeyRotateSubmission.AsObject;
+    static toObject(includeInstance: boolean, msg: KeyRotateSubmission): KeyRotateSubmission.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: KeyRotateSubmission, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): KeyRotateSubmission;
+    static deserializeBinaryFromReader(message: KeyRotateSubmission, reader: jspb.BinaryReader): KeyRotateSubmission;
+}
+
+export namespace KeyRotateSubmission {
+    export type AsObject = {
+        newPubKeyIndex: number,
+        targetBlock: number,
+        newPubKey: string,
+        currentPubKeyHash: string,
+    }
 }
 
 export enum NodeSignatureKind {

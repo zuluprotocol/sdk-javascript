@@ -914,7 +914,8 @@ proto.vega.api.v1.SubmitTransactionResponse.prototype.toObject = function(opt_in
  */
 proto.vega.api.v1.SubmitTransactionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    txHash: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -955,6 +956,10 @@ proto.vega.api.v1.SubmitTransactionResponse.deserializeBinaryFromReader = functi
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setSuccess(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTxHash(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -991,6 +996,13 @@ proto.vega.api.v1.SubmitTransactionResponse.serializeBinaryToWriter = function(m
       f
     );
   }
+  f = message.getTxHash();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1009,6 +1021,24 @@ proto.vega.api.v1.SubmitTransactionResponse.prototype.getSuccess = function() {
  */
 proto.vega.api.v1.SubmitTransactionResponse.prototype.setSuccess = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional string tx_hash = 2;
+ * @return {string}
+ */
+proto.vega.api.v1.SubmitTransactionResponse.prototype.getTxHash = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.vega.api.v1.SubmitTransactionResponse} returns this
+ */
+proto.vega.api.v1.SubmitTransactionResponse.prototype.setTxHash = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
