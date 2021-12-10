@@ -65,6 +65,52 @@ export namespace DelegationsResponse {
     }
 }
 
+export class ObserveDelegationsRequest extends jspb.Message {
+    getParty(): string;
+    setParty(value: string): ObserveDelegationsRequest;
+    getNodeId(): string;
+    setNodeId(value: string): ObserveDelegationsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ObserveDelegationsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ObserveDelegationsRequest): ObserveDelegationsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ObserveDelegationsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ObserveDelegationsRequest;
+    static deserializeBinaryFromReader(message: ObserveDelegationsRequest, reader: jspb.BinaryReader): ObserveDelegationsRequest;
+}
+
+export namespace ObserveDelegationsRequest {
+    export type AsObject = {
+        party: string,
+        nodeId: string,
+    }
+}
+
+export class ObserveDelegationsResponse extends jspb.Message {
+
+    hasDelegation(): boolean;
+    clearDelegation(): void;
+    getDelegation(): vega_vega_pb.Delegation | undefined;
+    setDelegation(value?: vega_vega_pb.Delegation): ObserveDelegationsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ObserveDelegationsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ObserveDelegationsResponse): ObserveDelegationsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ObserveDelegationsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ObserveDelegationsResponse;
+    static deserializeBinaryFromReader(message: ObserveDelegationsResponse, reader: jspb.BinaryReader): ObserveDelegationsResponse;
+}
+
+export namespace ObserveDelegationsResponse {
+    export type AsObject = {
+        delegation?: vega_vega_pb.Delegation.AsObject,
+    }
+}
+
 export class PartyStakeRequest extends jspb.Message {
     getParty(): string;
     setParty(value: string): PartyStakeRequest;
@@ -272,6 +318,116 @@ export class GetEpochResponse extends jspb.Message {
 export namespace GetEpochResponse {
     export type AsObject = {
         epoch?: vega_vega_pb.Epoch.AsObject,
+    }
+}
+
+export class KeyRotation extends jspb.Message {
+    getNodeId(): string;
+    setNodeId(value: string): KeyRotation;
+    getOldPubKey(): string;
+    setOldPubKey(value: string): KeyRotation;
+    getNewPubKey(): string;
+    setNewPubKey(value: string): KeyRotation;
+    getBlockHeight(): number;
+    setBlockHeight(value: number): KeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): KeyRotation.AsObject;
+    static toObject(includeInstance: boolean, msg: KeyRotation): KeyRotation.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: KeyRotation, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): KeyRotation;
+    static deserializeBinaryFromReader(message: KeyRotation, reader: jspb.BinaryReader): KeyRotation;
+}
+
+export namespace KeyRotation {
+    export type AsObject = {
+        nodeId: string,
+        oldPubKey: string,
+        newPubKey: string,
+        blockHeight: number,
+    }
+}
+
+export class GetKeyRotationsRequest extends jspb.Message {
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetKeyRotationsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetKeyRotationsRequest): GetKeyRotationsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetKeyRotationsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetKeyRotationsRequest;
+    static deserializeBinaryFromReader(message: GetKeyRotationsRequest, reader: jspb.BinaryReader): GetKeyRotationsRequest;
+}
+
+export namespace GetKeyRotationsRequest {
+    export type AsObject = {
+    }
+}
+
+export class GetKeyRotationsResponse extends jspb.Message {
+    clearRotationsList(): void;
+    getRotationsList(): Array<KeyRotation>;
+    setRotationsList(value: Array<KeyRotation>): GetKeyRotationsResponse;
+    addRotations(value?: KeyRotation, index?: number): KeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetKeyRotationsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetKeyRotationsResponse): GetKeyRotationsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetKeyRotationsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetKeyRotationsResponse;
+    static deserializeBinaryFromReader(message: GetKeyRotationsResponse, reader: jspb.BinaryReader): GetKeyRotationsResponse;
+}
+
+export namespace GetKeyRotationsResponse {
+    export type AsObject = {
+        rotationsList: Array<KeyRotation.AsObject>,
+    }
+}
+
+export class GetKeyRotationsByNodeRequest extends jspb.Message {
+    getNodeId(): string;
+    setNodeId(value: string): GetKeyRotationsByNodeRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetKeyRotationsByNodeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetKeyRotationsByNodeRequest): GetKeyRotationsByNodeRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetKeyRotationsByNodeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetKeyRotationsByNodeRequest;
+    static deserializeBinaryFromReader(message: GetKeyRotationsByNodeRequest, reader: jspb.BinaryReader): GetKeyRotationsByNodeRequest;
+}
+
+export namespace GetKeyRotationsByNodeRequest {
+    export type AsObject = {
+        nodeId: string,
+    }
+}
+
+export class GetKeyRotationsByNodeResponse extends jspb.Message {
+    clearRotationsList(): void;
+    getRotationsList(): Array<KeyRotation>;
+    setRotationsList(value: Array<KeyRotation>): GetKeyRotationsByNodeResponse;
+    addRotations(value?: KeyRotation, index?: number): KeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetKeyRotationsByNodeResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetKeyRotationsByNodeResponse): GetKeyRotationsByNodeResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetKeyRotationsByNodeResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetKeyRotationsByNodeResponse;
+    static deserializeBinaryFromReader(message: GetKeyRotationsByNodeResponse, reader: jspb.BinaryReader): GetKeyRotationsByNodeResponse;
+}
+
+export namespace GetKeyRotationsByNodeResponse {
+    export type AsObject = {
+        rotationsList: Array<KeyRotation.AsObject>,
     }
 }
 
@@ -3168,6 +3324,52 @@ export class OracleDataBySpecResponse extends jspb.Message {
 export namespace OracleDataBySpecResponse {
     export type AsObject = {
         oracleDataList: Array<vega_oracles_v1_data_pb.OracleData.AsObject>,
+    }
+}
+
+export class ObserveRewardDetailsRequest extends jspb.Message {
+    getAssetId(): string;
+    setAssetId(value: string): ObserveRewardDetailsRequest;
+    getParty(): string;
+    setParty(value: string): ObserveRewardDetailsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ObserveRewardDetailsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ObserveRewardDetailsRequest): ObserveRewardDetailsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ObserveRewardDetailsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ObserveRewardDetailsRequest;
+    static deserializeBinaryFromReader(message: ObserveRewardDetailsRequest, reader: jspb.BinaryReader): ObserveRewardDetailsRequest;
+}
+
+export namespace ObserveRewardDetailsRequest {
+    export type AsObject = {
+        assetId: string,
+        party: string,
+    }
+}
+
+export class ObserveRewardDetailsResponse extends jspb.Message {
+
+    hasRewardDetails(): boolean;
+    clearRewardDetails(): void;
+    getRewardDetails(): vega_vega_pb.RewardDetails | undefined;
+    setRewardDetails(value?: vega_vega_pb.RewardDetails): ObserveRewardDetailsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ObserveRewardDetailsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ObserveRewardDetailsResponse): ObserveRewardDetailsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ObserveRewardDetailsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ObserveRewardDetailsResponse;
+    static deserializeBinaryFromReader(message: ObserveRewardDetailsResponse, reader: jspb.BinaryReader): ObserveRewardDetailsResponse;
+}
+
+export namespace ObserveRewardDetailsResponse {
+    export type AsObject = {
+        rewardDetails?: vega_vega_pb.RewardDetails.AsObject,
     }
 }
 

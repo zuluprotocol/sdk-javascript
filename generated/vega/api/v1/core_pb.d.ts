@@ -104,6 +104,8 @@ export namespace SubmitTransactionRequest {
 export class SubmitTransactionResponse extends jspb.Message {
     getSuccess(): boolean;
     setSuccess(value: boolean): SubmitTransactionResponse;
+    getTxHash(): string;
+    setTxHash(value: string): SubmitTransactionResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SubmitTransactionResponse.AsObject;
@@ -118,6 +120,7 @@ export class SubmitTransactionResponse extends jspb.Message {
 export namespace SubmitTransactionResponse {
     export type AsObject = {
         success: boolean,
+        txHash: string,
     }
 }
 

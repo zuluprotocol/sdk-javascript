@@ -60,6 +60,8 @@ interface ITradingDataServiceService extends grpc.ServiceDefinition<grpc.Untyped
     getNodeData: ITradingDataServiceService_IGetNodeData;
     getNodes: ITradingDataServiceService_IGetNodes;
     getNodeByID: ITradingDataServiceService_IGetNodeByID;
+    getKeyRotations: ITradingDataServiceService_IGetKeyRotations;
+    getKeyRotationsByNode: ITradingDataServiceService_IGetKeyRotationsByNode;
     getEpoch: ITradingDataServiceService_IGetEpoch;
     getVegaTime: ITradingDataServiceService_IGetVegaTime;
     accountsSubscribe: ITradingDataServiceService_IAccountsSubscribe;
@@ -87,9 +89,11 @@ interface ITradingDataServiceService extends grpc.ServiceDefinition<grpc.Untyped
     oracleSpec: ITradingDataServiceService_IOracleSpec;
     oracleSpecs: ITradingDataServiceService_IOracleSpecs;
     oracleDataBySpec: ITradingDataServiceService_IOracleDataBySpec;
+    observeRewardDetails: ITradingDataServiceService_IObserveRewardDetails;
     getRewardDetails: ITradingDataServiceService_IGetRewardDetails;
     checkpoints: ITradingDataServiceService_ICheckpoints;
     delegations: ITradingDataServiceService_IDelegations;
+    observeDelegations: ITradingDataServiceService_IObserveDelegations;
     partyStake: ITradingDataServiceService_IPartyStake;
 }
 
@@ -462,6 +466,24 @@ interface ITradingDataServiceService_IGetNodeByID extends grpc.MethodDefinition<
     responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GetNodeByIDResponse>;
     responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GetNodeByIDResponse>;
 }
+interface ITradingDataServiceService_IGetKeyRotations extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, data_node_api_v1_trading_data_pb.GetKeyRotationsResponse> {
+    path: "/datanode.api.v1.TradingDataService/GetKeyRotations";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GetKeyRotationsRequest>;
+    requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GetKeyRotationsRequest>;
+    responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GetKeyRotationsResponse>;
+    responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GetKeyRotationsResponse>;
+}
+interface ITradingDataServiceService_IGetKeyRotationsByNode extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse> {
+    path: "/datanode.api.v1.TradingDataService/GetKeyRotationsByNode";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest>;
+    requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest>;
+    responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse>;
+    responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse>;
+}
 interface ITradingDataServiceService_IGetEpoch extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.GetEpochRequest, data_node_api_v1_trading_data_pb.GetEpochResponse> {
     path: "/datanode.api.v1.TradingDataService/GetEpoch";
     requestStream: false;
@@ -705,6 +727,15 @@ interface ITradingDataServiceService_IOracleDataBySpec extends grpc.MethodDefini
     responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.OracleDataBySpecResponse>;
     responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.OracleDataBySpecResponse>;
 }
+interface ITradingDataServiceService_IObserveRewardDetails extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse> {
+    path: "/datanode.api.v1.TradingDataService/ObserveRewardDetails";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest>;
+    requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest>;
+    responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
+    responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
+}
 interface ITradingDataServiceService_IGetRewardDetails extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, data_node_api_v1_trading_data_pb.GetRewardDetailsResponse> {
     path: "/datanode.api.v1.TradingDataService/GetRewardDetails";
     requestStream: false;
@@ -731,6 +762,15 @@ interface ITradingDataServiceService_IDelegations extends grpc.MethodDefinition<
     requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.DelegationsRequest>;
     responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.DelegationsResponse>;
     responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.DelegationsResponse>;
+}
+interface ITradingDataServiceService_IObserveDelegations extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, data_node_api_v1_trading_data_pb.ObserveDelegationsResponse> {
+    path: "/datanode.api.v1.TradingDataService/ObserveDelegations";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.ObserveDelegationsRequest>;
+    requestDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.ObserveDelegationsRequest>;
+    responseSerialize: grpc.serialize<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
+    responseDeserialize: grpc.deserialize<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
 }
 interface ITradingDataServiceService_IPartyStake extends grpc.MethodDefinition<data_node_api_v1_trading_data_pb.PartyStakeRequest, data_node_api_v1_trading_data_pb.PartyStakeResponse> {
     path: "/datanode.api.v1.TradingDataService/PartyStake";
@@ -786,6 +826,8 @@ export interface ITradingDataServiceServer extends grpc.UntypedServiceImplementa
     getNodeData: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetNodeDataRequest, data_node_api_v1_trading_data_pb.GetNodeDataResponse>;
     getNodes: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetNodesRequest, data_node_api_v1_trading_data_pb.GetNodesResponse>;
     getNodeByID: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetNodeByIDRequest, data_node_api_v1_trading_data_pb.GetNodeByIDResponse>;
+    getKeyRotations: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, data_node_api_v1_trading_data_pb.GetKeyRotationsResponse>;
+    getKeyRotationsByNode: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse>;
     getEpoch: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetEpochRequest, data_node_api_v1_trading_data_pb.GetEpochResponse>;
     getVegaTime: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetVegaTimeRequest, data_node_api_v1_trading_data_pb.GetVegaTimeResponse>;
     accountsSubscribe: grpc.handleServerStreamingCall<data_node_api_v1_trading_data_pb.AccountsSubscribeRequest, data_node_api_v1_trading_data_pb.AccountsSubscribeResponse>;
@@ -813,9 +855,11 @@ export interface ITradingDataServiceServer extends grpc.UntypedServiceImplementa
     oracleSpec: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.OracleSpecRequest, data_node_api_v1_trading_data_pb.OracleSpecResponse>;
     oracleSpecs: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.OracleSpecsRequest, data_node_api_v1_trading_data_pb.OracleSpecsResponse>;
     oracleDataBySpec: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, data_node_api_v1_trading_data_pb.OracleDataBySpecResponse>;
+    observeRewardDetails: grpc.handleServerStreamingCall<data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
     getRewardDetails: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, data_node_api_v1_trading_data_pb.GetRewardDetailsResponse>;
     checkpoints: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.CheckpointsRequest, data_node_api_v1_trading_data_pb.CheckpointsResponse>;
     delegations: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.DelegationsRequest, data_node_api_v1_trading_data_pb.DelegationsResponse>;
+    observeDelegations: grpc.handleServerStreamingCall<data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
     partyStake: grpc.handleUnaryCall<data_node_api_v1_trading_data_pb.PartyStakeRequest, data_node_api_v1_trading_data_pb.PartyStakeResponse>;
 }
 
@@ -939,6 +983,12 @@ export interface ITradingDataServiceClient {
     getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
     getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
     getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
+    getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
     getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
     getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
     getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
@@ -1010,6 +1060,8 @@ export interface ITradingDataServiceClient {
     oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
     oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
     oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
+    observeRewardDetails(request: data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
+    observeRewardDetails(request: data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
     getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
     getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
     getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
@@ -1019,6 +1071,8 @@ export interface ITradingDataServiceClient {
     delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
     delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
     delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
+    observeDelegations(request: data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
+    observeDelegations(request: data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
     partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;
     partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;
     partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;
@@ -1144,6 +1198,12 @@ export class TradingDataServiceClient extends grpc.Client implements ITradingDat
     public getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
     public getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
     public getNodeByID(request: data_node_api_v1_trading_data_pb.GetNodeByIDRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetNodeByIDResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotations(request: data_node_api_v1_trading_data_pb.GetKeyRotationsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
+    public getKeyRotationsByNode(request: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetKeyRotationsByNodeResponse) => void): grpc.ClientUnaryCall;
     public getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
     public getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
     public getEpoch(request: data_node_api_v1_trading_data_pb.GetEpochRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetEpochResponse) => void): grpc.ClientUnaryCall;
@@ -1215,6 +1275,8 @@ export class TradingDataServiceClient extends grpc.Client implements ITradingDat
     public oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
     public oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
     public oracleDataBySpec(request: data_node_api_v1_trading_data_pb.OracleDataBySpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.OracleDataBySpecResponse) => void): grpc.ClientUnaryCall;
+    public observeRewardDetails(request: data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
+    public observeRewardDetails(request: data_node_api_v1_trading_data_pb.ObserveRewardDetailsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveRewardDetailsResponse>;
     public getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
     public getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
     public getRewardDetails(request: data_node_api_v1_trading_data_pb.GetRewardDetailsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.GetRewardDetailsResponse) => void): grpc.ClientUnaryCall;
@@ -1224,6 +1286,8 @@ export class TradingDataServiceClient extends grpc.Client implements ITradingDat
     public delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
     public delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
     public delegations(request: data_node_api_v1_trading_data_pb.DelegationsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.DelegationsResponse) => void): grpc.ClientUnaryCall;
+    public observeDelegations(request: data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
+    public observeDelegations(request: data_node_api_v1_trading_data_pb.ObserveDelegationsRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<data_node_api_v1_trading_data_pb.ObserveDelegationsResponse>;
     public partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;
     public partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;
     public partyStake(request: data_node_api_v1_trading_data_pb.PartyStakeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: data_node_api_v1_trading_data_pb.PartyStakeResponse) => void): grpc.ClientUnaryCall;

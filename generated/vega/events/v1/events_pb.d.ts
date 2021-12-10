@@ -95,6 +95,26 @@ export namespace CheckpointEvent {
     }
 }
 
+export class StreamStartEvent extends jspb.Message {
+    getChainId(): string;
+    setChainId(value: string): StreamStartEvent;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): StreamStartEvent.AsObject;
+    static toObject(includeInstance: boolean, msg: StreamStartEvent): StreamStartEvent.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: StreamStartEvent, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): StreamStartEvent;
+    static deserializeBinaryFromReader(message: StreamStartEvent, reader: jspb.BinaryReader): StreamStartEvent;
+}
+
+export namespace StreamStartEvent {
+    export type AsObject = {
+        chainId: string,
+    }
+}
+
 export class RewardPayoutEvent extends jspb.Message {
     getParty(): string;
     setParty(value: string): RewardPayoutEvent;
@@ -392,8 +412,8 @@ export class PositionResolution extends jspb.Message {
     setDistressed(value: number): PositionResolution;
     getClosed(): number;
     setClosed(value: number): PositionResolution;
-    getMarkPrice(): number;
-    setMarkPrice(value: number): PositionResolution;
+    getMarkPrice(): string;
+    setMarkPrice(value: string): PositionResolution;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): PositionResolution.AsObject;
@@ -410,7 +430,7 @@ export namespace PositionResolution {
         marketId: string,
         distressed: number,
         closed: number,
-        markPrice: number,
+        markPrice: string,
     }
 }
 
@@ -419,8 +439,8 @@ export class LossSocialization extends jspb.Message {
     setMarketId(value: string): LossSocialization;
     getPartyId(): string;
     setPartyId(value: string): LossSocialization;
-    getAmount(): number;
-    setAmount(value: number): LossSocialization;
+    getAmount(): string;
+    setAmount(value: string): LossSocialization;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LossSocialization.AsObject;
@@ -436,15 +456,15 @@ export namespace LossSocialization {
     export type AsObject = {
         marketId: string,
         partyId: string,
-        amount: number,
+        amount: string,
     }
 }
 
 export class TradeSettlement extends jspb.Message {
     getSize(): number;
     setSize(value: number): TradeSettlement;
-    getPrice(): number;
-    setPrice(value: number): TradeSettlement;
+    getPrice(): string;
+    setPrice(value: string): TradeSettlement;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TradeSettlement.AsObject;
@@ -459,7 +479,7 @@ export class TradeSettlement extends jspb.Message {
 export namespace TradeSettlement {
     export type AsObject = {
         size: number,
-        price: number,
+        price: string,
     }
 }
 
@@ -468,8 +488,8 @@ export class SettlePosition extends jspb.Message {
     setMarketId(value: string): SettlePosition;
     getPartyId(): string;
     setPartyId(value: string): SettlePosition;
-    getPrice(): number;
-    setPrice(value: number): SettlePosition;
+    getPrice(): string;
+    setPrice(value: string): SettlePosition;
     clearTradeSettlementsList(): void;
     getTradeSettlementsList(): Array<TradeSettlement>;
     setTradeSettlementsList(value: Array<TradeSettlement>): SettlePosition;
@@ -489,7 +509,7 @@ export namespace SettlePosition {
     export type AsObject = {
         marketId: string,
         partyId: string,
-        price: number,
+        price: string,
         tradeSettlementsList: Array<TradeSettlement.AsObject>,
     }
 }
@@ -499,10 +519,10 @@ export class SettleDistressed extends jspb.Message {
     setMarketId(value: string): SettleDistressed;
     getPartyId(): string;
     setPartyId(value: string): SettleDistressed;
-    getMargin(): number;
-    setMargin(value: number): SettleDistressed;
-    getPrice(): number;
-    setPrice(value: number): SettleDistressed;
+    getMargin(): string;
+    setMargin(value: string): SettleDistressed;
+    getPrice(): string;
+    setPrice(value: string): SettleDistressed;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SettleDistressed.AsObject;
@@ -518,8 +538,8 @@ export namespace SettleDistressed {
     export type AsObject = {
         marketId: string,
         partyId: string,
-        margin: number,
-        price: number,
+        margin: string,
+        price: string,
     }
 }
 
@@ -601,6 +621,8 @@ export class ValidatorUpdate extends jspb.Message {
     setName(value: string): ValidatorUpdate;
     getAvatarUrl(): string;
     setAvatarUrl(value: string): ValidatorUpdate;
+    getVegaPubKeyIndex(): number;
+    setVegaPubKeyIndex(value: number): ValidatorUpdate;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ValidatorUpdate.AsObject;
@@ -622,6 +644,36 @@ export namespace ValidatorUpdate {
         country: string,
         name: string,
         avatarUrl: string,
+        vegaPubKeyIndex: number,
+    }
+}
+
+export class KeyRotation extends jspb.Message {
+    getNodeId(): string;
+    setNodeId(value: string): KeyRotation;
+    getOldPubKey(): string;
+    setOldPubKey(value: string): KeyRotation;
+    getNewPubKey(): string;
+    setNewPubKey(value: string): KeyRotation;
+    getBlockHeight(): number;
+    setBlockHeight(value: number): KeyRotation;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): KeyRotation.AsObject;
+    static toObject(includeInstance: boolean, msg: KeyRotation): KeyRotation.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: KeyRotation, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): KeyRotation;
+    static deserializeBinaryFromReader(message: KeyRotation, reader: jspb.BinaryReader): KeyRotation;
+}
+
+export namespace KeyRotation {
+    export type AsObject = {
+        nodeId: string,
+        oldPubKey: string,
+        newPubKey: string,
+        blockHeight: number,
     }
 }
 
@@ -803,6 +855,11 @@ export class BusEvent extends jspb.Message {
     getCheckpoint(): CheckpointEvent | undefined;
     setCheckpoint(value?: CheckpointEvent): BusEvent;
 
+    hasKeyRotation(): boolean;
+    clearKeyRotation(): void;
+    getKeyRotation(): KeyRotation | undefined;
+    setKeyRotation(value?: KeyRotation): BusEvent;
+
     hasMarket(): boolean;
     clearMarket(): void;
     getMarket(): MarketEvent | undefined;
@@ -814,6 +871,8 @@ export class BusEvent extends jspb.Message {
     setTxErrEvent(value?: TxErrorEvent): BusEvent;
     getVersion(): number;
     setVersion(value: number): BusEvent;
+    getChainId(): string;
+    setChainId(value: string): BusEvent;
 
     getEventCase(): BusEvent.EventCase;
 
@@ -866,9 +925,11 @@ export namespace BusEvent {
         stakeLinking?: StakeLinking.AsObject,
         rewardPayout?: RewardPayoutEvent.AsObject,
         checkpoint?: CheckpointEvent.AsObject,
+        keyRotation?: KeyRotation.AsObject,
         market?: MarketEvent.AsObject,
         txErrEvent?: TxErrorEvent.AsObject,
         version: number,
+        chainId: string,
     }
 
     export enum EventCase {
@@ -907,6 +968,7 @@ export namespace BusEvent {
         STAKE_LINKING = 133,
         REWARD_PAYOUT = 134,
         CHECKPOINT = 135,
+        KEY_ROTATION = 136,
         MARKET = 1001,
         TX_ERR_EVENT = 2001,
     }
@@ -950,6 +1012,8 @@ export enum BusEventType {
     BUS_EVENT_TYPE_STAKE_LINKING = 33,
     BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT = 34,
     BUS_EVENT_TYPE_CHECKPOINT = 35,
+    BUS_EVENT_TYPE_STREAM_START = 36,
+    BUS_EVENT_TYPE_KEY_ROTATION = 37,
     BUS_EVENT_TYPE_MARKET = 101,
     BUS_EVENT_TYPE_TX_ERROR = 201,
 }

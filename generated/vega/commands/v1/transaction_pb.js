@@ -97,7 +97,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.vega.commands.v1.InputData.oneofGroups_ = [[1001,1002,1003,1004,1005,1006,1007,1008,1009,2001,2002,2003,2004,3001,4001]];
+proto.vega.commands.v1.InputData.oneofGroups_ = [[1001,1002,1003,1004,1005,1006,1007,1008,1009,2001,2002,2003,2004,2005,3001,4001]];
 
 /**
  * @enum {number}
@@ -117,6 +117,7 @@ proto.vega.commands.v1.InputData.CommandCase = {
   NODE_VOTE: 2002,
   NODE_SIGNATURE: 2003,
   CHAIN_EVENT: 2004,
+  KEY_ROTATE_SUBMISSION: 2005,
   ORACLE_DATA_SUBMISSION: 3001,
   RESTORE_SNAPSHOT_SUBMISSION: 4001
 };
@@ -174,6 +175,7 @@ proto.vega.commands.v1.InputData.toObject = function(includeInstance, msg) {
     nodeVote: (f = msg.getNodeVote()) && vega_commands_v1_validator_commands_pb.NodeVote.toObject(includeInstance, f),
     nodeSignature: (f = msg.getNodeSignature()) && vega_commands_v1_validator_commands_pb.NodeSignature.toObject(includeInstance, f),
     chainEvent: (f = msg.getChainEvent()) && vega_commands_v1_validator_commands_pb.ChainEvent.toObject(includeInstance, f),
+    keyRotateSubmission: (f = msg.getKeyRotateSubmission()) && vega_commands_v1_validator_commands_pb.KeyRotateSubmission.toObject(includeInstance, f),
     oracleDataSubmission: (f = msg.getOracleDataSubmission()) && vega_commands_v1_oracles_pb.OracleDataSubmission.toObject(includeInstance, f),
     restoreSnapshotSubmission: (f = msg.getRestoreSnapshotSubmission()) && vega_commands_v1_commands_pb.RestoreSnapshot.toObject(includeInstance, f)
   };
@@ -284,6 +286,11 @@ proto.vega.commands.v1.InputData.deserializeBinaryFromReader = function(msg, rea
       var value = new vega_commands_v1_validator_commands_pb.ChainEvent;
       reader.readMessage(value,vega_commands_v1_validator_commands_pb.ChainEvent.deserializeBinaryFromReader);
       msg.setChainEvent(value);
+      break;
+    case 2005:
+      var value = new vega_commands_v1_validator_commands_pb.KeyRotateSubmission;
+      reader.readMessage(value,vega_commands_v1_validator_commands_pb.KeyRotateSubmission.deserializeBinaryFromReader);
+      msg.setKeyRotateSubmission(value);
       break;
     case 3001:
       var value = new vega_commands_v1_oracles_pb.OracleDataSubmission;
@@ -440,6 +447,14 @@ proto.vega.commands.v1.InputData.serializeBinaryToWriter = function(message, wri
       2004,
       f,
       vega_commands_v1_validator_commands_pb.ChainEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getKeyRotateSubmission();
+  if (f != null) {
+    writer.writeMessage(
+      2005,
+      f,
+      vega_commands_v1_validator_commands_pb.KeyRotateSubmission.serializeBinaryToWriter
     );
   }
   f = message.getOracleDataSubmission();
@@ -975,6 +990,43 @@ proto.vega.commands.v1.InputData.prototype.clearChainEvent = function() {
  */
 proto.vega.commands.v1.InputData.prototype.hasChainEvent = function() {
   return jspb.Message.getField(this, 2004) != null;
+};
+
+
+/**
+ * optional KeyRotateSubmission key_rotate_submission = 2005;
+ * @return {?proto.vega.commands.v1.KeyRotateSubmission}
+ */
+proto.vega.commands.v1.InputData.prototype.getKeyRotateSubmission = function() {
+  return /** @type{?proto.vega.commands.v1.KeyRotateSubmission} */ (
+    jspb.Message.getWrapperField(this, vega_commands_v1_validator_commands_pb.KeyRotateSubmission, 2005));
+};
+
+
+/**
+ * @param {?proto.vega.commands.v1.KeyRotateSubmission|undefined} value
+ * @return {!proto.vega.commands.v1.InputData} returns this
+*/
+proto.vega.commands.v1.InputData.prototype.setKeyRotateSubmission = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2005, proto.vega.commands.v1.InputData.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.vega.commands.v1.InputData} returns this
+ */
+proto.vega.commands.v1.InputData.prototype.clearKeyRotateSubmission = function() {
+  return this.setKeyRotateSubmission(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.vega.commands.v1.InputData.prototype.hasKeyRotateSubmission = function() {
+  return jspb.Message.getField(this, 2005) != null;
 };
 
 
