@@ -36,7 +36,7 @@
     "eslint": "7.32.0",
     "grpc_tools_node_protoc_ts": "5.3.2",
     "path-parse": "1.0.7",
-    "tape": "5.3.1",
+    "tape": "5.6.1",
     "tinyify": "3.0.0",
     "typescript": "4.4.3",
     "uglify-js": "3.14.2",
